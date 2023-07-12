@@ -42,41 +42,64 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
                 pred = "negative intent"
             else:                
                 pred = mlp_intent
-
-    # conversation    
-    if pred == "negative intent" or pred != "slow delivery service":
-        from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
-        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
-        
-    elif pred == "slow delivery service":
+    print("pred: ", pred)
+    # conversation
+    if pred == "slow delivery service":
         from template_sub_slow_delivery_service import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
         order_num = input("Bot reply: May I have your order number please? \n")
-        # verify if the number is valid, and do some backend proces with order_num        
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        # verify if the number is valid, and do some backend proces with order_num
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
         bot_flag = 1 # set bot_flag
 
-    # add more of such rule here for other intents
+    elif pred == "OOS":
+        from template_sub_oos import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
+        order_num = input("Bot reply: May I have your order number please? \n")
+        # verify if the number is valid, and do some backend proces with order_num
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        bot_flag = 2 # set bot_flag
+
+    # add more of such rule here for other intents, 
+    # may need to re-organize their sequence and bot_flag for better visual
+    else:
+        from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
     
-    output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+    # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     # check bot_flag, and get user's response
     if bot_flag == 0:
-        ner = ""
+        resolution_option = "None"
+    
+    # slow delivery service
     elif bot_flag == 1:
+        resolution_option = "None"
         option_flag += 1
         if option_flag >= 2:
             options = [
                 "option (a): Cancel the order with a refund",
                 "option (b): Take the 'ZUSSORRY' voucher"
             ]
-            result = check_closer_option(user_input, options)
-            print(result)
+            resolution_option = check_closer_option(user_input, options)
+            print("resolution_option = None")
+    
+    # OOS
+    elif bot_flag == 2:
+        resolution_option = "None"
+        option_flag += 1
+        if option_flag >= 2:
+            options = [
+                "option (a): Cancel the order with a refund",
+                "option (b): To have partial refund"
+            ]
+            resolution_option = check_closer_option(user_input, options)
+            print("resolution_option = None")
 
     # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
-
-    return output, summary_value, mem_flag, bot_flag, option_flag
+    
+    return output, summary_value, mem_flag, bot_flag, option_flag, resolution_option
 
 
 
@@ -93,8 +116,9 @@ while True:
     else:
         user_input = input()
 
-    output, summary_value, mem_flag, bot_flag, option_flag = lambda_handler(mem_flag, bot_flag, option_flag,
+    output, summary_value, mem_flag, bot_flag, option_flag, resolution_option = lambda_handler(mem_flag, bot_flag, option_flag,
                                                                 pickled_memory_file, user_input)
 
     print("Bot reply: ", output)
-    print("chat summary: ", summary_value)
+    print("Chat summary: ", summary_value)
+    print("Resolution option: ", resolution_option)

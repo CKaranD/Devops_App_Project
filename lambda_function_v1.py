@@ -1,3 +1,5 @@
+# we will only attend to this function when all dev is done
+
 import os
 from zusbot_main_no_tools import *
 from json_object_maker import create_json_object
