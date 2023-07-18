@@ -5,7 +5,7 @@ from detect_language import detect_language
 from mlp_classifier import mlp_classifier
 from pre_negative_intent_classifier import pre_level_classifier
 from translation import translator
-from levenshtein_options_checking import check_closer_option
+from ada_options_checking import check_closer_option
 
 def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_input):
     # Set MPLCONFIGDIR to /tmp
@@ -66,7 +66,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
     else:
         from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)        
     
     # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
@@ -80,10 +80,12 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         option_flag += 1
         if option_flag >= 2:
             options = [
-                "option (a): Cancel the order with a refund",
-                "option (b): Take the 'ZUSSORRY' voucher"
+                "option (1): Cancel the order with a refund",
+                "option (2): Take the 'ZUSSORRY' voucher"
             ]
-            resolution_option = check_closer_option(user_input, options)            
+            resolution_option = check_closer_option(user_input, options)
+            option_flag = 0
+            bot_flag = 0
     
     # OOS
     elif bot_flag == 2:
@@ -91,10 +93,12 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         option_flag += 1
         if option_flag >= 2:
             options = [
-                "option (a): Cancel the order with full refund",
-                "option (b): Take partial refund"
+                "option (1): Cancel the order with full refund",
+                "option (2): Take partial refund"
             ]
-            resolution_option = check_closer_option(user_input, options)            
+            resolution_option = check_closer_option(user_input, options)
+            option_flag = 0
+            bot_flag = 0
 
     # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
     
