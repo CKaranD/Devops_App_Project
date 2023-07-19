@@ -50,7 +50,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
         order_num = input("Bot reply: May I have your order number please? \n")
         # verify if the number is valid, and do some backend proces with order_num
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
         bot_flag = 1 # set bot_flag
 
     elif pred == "OOS":
@@ -58,17 +58,26 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
         order_num = input("Bot reply: May I have your order number please? \n")
         # verify if the number is valid, and do some backend proces with order_num
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
         bot_flag = 2 # set bot_flag
+
+    elif pred == "delivery info / status":
+        from template_sub_delivery_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
+        order_num = input("Bot reply: May I have your order number please? \n")
+        # check the status and select the answering scheme (1) to (4)
+        # for debug, we set the status here for testing
+        scheme = 2
+        ZUS_TEMPLATE = ZUS_PREFIX + str(scheme) + SCHEME_SPLIT1 + str(scheme) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     # add more of such rule here for other intents, 
     # may need to re-organize their sequence and bot_flag for better visual
     else:
         from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)        
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
     
-    # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+    output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     # check bot_flag, and get user's response
     if bot_flag == 0:

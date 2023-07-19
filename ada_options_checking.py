@@ -11,7 +11,7 @@ def check_closer_option(user_input, options):
 
     # Find the index of the option with the highest score
     closest_index = similarity_scores.index(max(similarity_scores))
-    return f"option ({closest_index + 1})"
+    return f"The customer selected option ({closest_index + 1})"
 
 
 def ada_embedding(text_input):
