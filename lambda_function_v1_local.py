@@ -66,9 +66,26 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         order_num = input("Bot reply: May I have your order number please? \n")
         # check the status from the backend database and select the answering scheme (1) to (4)
         # for debug, we set the status here for testing
-        status = 1
+        status = 3
         ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
         # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+
+    elif pred == "pick info / status":
+        from template_sub_pickup_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
+        order_num = input("Bot reply: May I have your order number please? \n")
+        # check the status from the backend database and select the answering scheme (1) to (4)
+        # for debug, we set the status here for testing
+        status = 3
+        ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+
+    elif pred == "performance - barista behaviour / service":
+        from template_sub_barista_behaviour_service import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
+        order_num = input("Bot reply: May I have your order number please? \n")        
+        # check the status from the backend database and select the answering scheme (1) to (2)
+        
+        bot_flag = 3 # set bot_flag
 
     # add more of such rule here for other intents, 
     # may need to re-organize their sequence and bot_flag for better visual
@@ -104,6 +121,20 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
             options = [
                 "option (1): Cancel the order with full refund",
                 "option (2): Take partial refund"
+            ]
+            resolution_option = check_closer_option(user_input, options)
+            option_flag = 0
+            bot_flag = 0
+
+    # Performance - Barista Behaviour / Service
+
+    elif bot_flag == 3:
+        resolution_option = "None"
+        option_flag += 1
+        if option_flag >= 2:
+            options = [
+                "option (1): Order picked up but status not changed",
+                "option (2): Barista/Staff attitude, behaviour, or service"
             ]
             resolution_option = check_closer_option(user_input, options)
             option_flag = 0
