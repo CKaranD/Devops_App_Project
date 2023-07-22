@@ -87,6 +87,23 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         
         bot_flag = 3 # set bot_flag
 
+    elif pred == "zus career":
+        from template_sub_zus_career import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
+        
+        bot_flag = 4 # set bot_flag
+
+    elif pred == "payment error / failure":
+        from template_sub_payment_error_failure import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
+        order_num = input("Bot reply: May I have your order number please? \n")
+        # check the payment status from the backend database and select the answering scheme (1) to (4)
+        # for debug, we set the status here for testing
+        payment_status = 2
+        ZUS_TEMPLATE = ZUS_PREFIX + str(payment_status) + SCHEME_SPLIT1 + str(payment_status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+
+        bot_flag = 5 # set bot_flag
+
     # add more of such rule here for other intents, 
     # may need to re-organize their sequence and bot_flag for better visual
     else:
@@ -127,7 +144,6 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
             bot_flag = 0
 
     # Performance - Barista Behaviour / Service
-
     elif bot_flag == 3:
         resolution_option = "None"
         option_flag += 1
@@ -139,6 +155,14 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
             resolution_option = check_closer_option(user_input, options)
             option_flag = 0
             bot_flag = 0
+
+    # ZUS Career
+    if bot_flag == 4:
+        resolution_option = "None"
+
+    # Payment Error / Failure
+    if bot_flag == 5:
+        resolution_option = "None"
 
     # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
     
