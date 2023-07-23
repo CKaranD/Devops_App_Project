@@ -29,6 +29,7 @@ jobs:
         ECR_REPOSITORY: devops_app_project
         IMAGE_TAG: ${{ github.sha }}
       run: |
+        docker login --username AWS --password-stdin public.ecr.aws/k6f5a2x1
         docker build -t devops_app_project:latest .
         docker tag devops_app_project:latest public.ecr.aws/k6f5a2x1/devops_app_project:latest
         docker push public.ecr.aws/k6f5a2x1/devops_app_project:latest
