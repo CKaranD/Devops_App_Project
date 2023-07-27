@@ -3,10 +3,12 @@ import re
     
 import openai
 from langchain import LLMChain
-from langchain.chains import ConversationChain
+from langchain.chains import (ConversationChain, ConversationalRetrievalChain)
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import (CombinedMemory, ConversationBufferMemory,
                             ConversationSummaryMemory)    
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
 
 # from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX,
 #                                 ZUS_SUFFIX)
@@ -30,7 +32,7 @@ def create_llm(openai_api_key):
             temperature=0,
             max_tokens = 2048)
     return llm
-    
+
 
 def create_memory(llm):
     # define the memory sets
@@ -88,21 +90,42 @@ def extract_response(text):
     return response
 
 
-def zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file):
-    # ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-    
-    PROMPT = PromptTemplate(
-    input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE)
+def zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file, is_retrieval_qa=False, retrival_db=None):
+    if(is_retrieval_qa):
 
-    # LLM chain consisting of the LLM and a prompt
-    llm_chain = ConversationChain(
-                llm=llm, 
-                verbose=True, 
-                memory=memory,
-                prompt=PROMPT
-            )
-    
-    output = llm_chain.run(input=user_input)
+        openai_api_key = keygen()
+        vectordb = Chroma(persist_directory=retrival_db, embedding_function=OpenAIEmbeddings(openai_api_key=openai_api_key))
+        retriever = vectordb.as_retriever()
+
+        llm_chain = ConversationalRetrievalChain.from_llm(
+            llm=ChatOpenAI(openai_api_key=openai_api_key, 
+                            temperature=0, 
+                            model="gpt-3.5-turbo-16k-0613"
+                        ), 
+            chain_type="stuff", 
+            retriever=retriever,
+            memory=memory,
+            verbose=False)
+        
+        # Need Sifu KY's help, cannot seems to get the chat_history_lines to work
+        # error: KeyError: 'input
+        output = llm_chain.run(question=user_input,chat_history=[])
+        
+    else:
+        # ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
+        
+        PROMPT = PromptTemplate(
+        input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE)        
+
+        # LLM chain consisting of the LLM and a prompt
+        llm_chain = ConversationChain(
+                    llm=llm, 
+                    verbose=True, 
+                    memory=memory,
+                    prompt=PROMPT
+                )
+        
+        output = llm_chain.run(input=user_input)
 
     is_dialg1 = is_dialogue_01(output)
     is_dialg2 = is_dialogue_02(output)

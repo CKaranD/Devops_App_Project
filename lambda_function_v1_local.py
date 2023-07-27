@@ -52,6 +52,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         # verify if the number is valid, and do some backend proces with order_num
         # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
         bot_flag = 1 # set bot_flag
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     elif pred == "OOS":
         from template_sub_oos import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
@@ -60,6 +61,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         # verify if the number is valid, and do some backend proces with order_num
         # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
         bot_flag = 2 # set bot_flag
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     elif pred == "delivery info / status":
         from template_sub_delivery_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
@@ -68,7 +70,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         # for debug, we set the status here for testing
         status = 3
         ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     elif pred == "pick info / status":
         from template_sub_pickup_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
@@ -77,7 +79,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         # for debug, we set the status here for testing
         status = 3
         ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     elif pred == "performance - barista behaviour / service":
         from template_sub_barista_behaviour_service import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
@@ -87,10 +89,13 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         
         bot_flag = 3 # set bot_flag
 
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+
     elif pred == "zus career":
         from template_sub_zus_career import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+
         bot_flag = 4 # set bot_flag
 
     elif pred == "payment error / failure":
@@ -100,18 +105,27 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         # for debug, we set the status here for testing
         payment_status = 2
         ZUS_TEMPLATE = ZUS_PREFIX + str(payment_status) + SCHEME_SPLIT1 + str(payment_status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
         bot_flag = 5 # set bot_flag
+
+    elif pred == "loyalty benefits":
+
+        db_path = "db/loyalty_benefits"
+        
+        output, summary_value = zusbot("", llm, user_input, memory, pickled_memory_file, True, db_path)
+
+        bot_flag = 6 # set bot_flag
+        
 
     # add more of such rule here for other intents, 
     # may need to re-organize their sequence and bot_flag for better visual
     else:
         from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
     
-    output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+    # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     # check bot_flag, and get user's response
     if bot_flag == 0:
@@ -162,6 +176,10 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
 
     # Payment Error / Failure
     if bot_flag == 5:
+        resolution_option = "None"
+
+    # Loyalty Benefits
+    if bot_flag == 6:
         resolution_option = "None"
 
     # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
