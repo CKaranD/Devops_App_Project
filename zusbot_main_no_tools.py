@@ -97,7 +97,7 @@ def zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file):
     # LLM chain consisting of the LLM and a prompt
     llm_chain = ConversationChain(
                 llm=llm, 
-                verbose=True, 
+                verbose=False, 
                 memory=memory,
                 prompt=PROMPT
             )
