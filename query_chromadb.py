@@ -16,6 +16,8 @@ def get_qa_chain():
         retriever=retriever)
 
 qa_chain = get_qa_chain()
-user_input = input("Yor query: ")
-output = qa_chain.run(user_input)
-print(output)
+
+while True:
+    user_input = input("Customer: ")
+    output = qa_chain.run(user_input)
+    print("ZUSBot: ", output)
