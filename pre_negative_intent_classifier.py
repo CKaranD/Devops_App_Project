@@ -2,9 +2,8 @@ import openai
 import json
 import re
 
-with open('OPENAI_API_KEY_MINDHIVE.txt') as f:
-    key = f.readlines()
-openai.api_key = str(key[0])
+from get_openai_key import openai_api_key
+openai.api_key = openai_api_key
 
 template_begin = ". Please classify the above sentence as either a greeting, 'personal self-introduction', compliment, 'thank you', 'weather description', exclamation, or 'others'. Return only the exact answer (with exact words and spelling) from the above choices, if there is none to choose from, then return = 'others'. "
 
@@ -43,7 +42,7 @@ def pre_level_classifier(customer_input):
 
     # Generate a text completion for a given prompt using the "gpt-3.5-turbo" language model
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo-0613",
+        model="gpt-3.5-turbo",
         temperature=0,
         max_tokens=16,
         messages=all_prompt,

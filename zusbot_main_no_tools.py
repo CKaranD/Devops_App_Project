@@ -26,7 +26,7 @@ def keygen():
 
 def create_llm(openai_api_key):
     llm=ChatOpenAI(openai_api_key=openai_api_key, 
-            model_name='gpt-3.5-turbo-0613',
+            model_name='gpt-3.5-turbo',
             temperature=0,
             max_tokens = 2048)
     return llm

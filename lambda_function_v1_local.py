@@ -6,11 +6,13 @@ from mlp_classifier import mlp_classifier
 from pre_negative_intent_classifier import pre_level_classifier
 from translation import translator
 from ada_options_checking import check_closer_option
+from get_openai_key import openai_api_key
+
 
 def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_input):
     # Set MPLCONFIGDIR to /tmp
     # os.environ['MPLCONFIGDIR'] = '/tmp'    
-    openai_api_key = keygen()
+    # openai_api_key = keygen()
 
     llm = create_llm(openai_api_key)        
 

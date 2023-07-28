@@ -2,10 +2,8 @@ import pickle
 import openai
 
 from openai.embeddings_utils import get_embedding
-
-with open('OPENAI_API_KEY_MINDHIVE.txt') as f:
-    key = f.readlines()
-openai.api_key = str(key[0])
+from get_openai_key import openai_api_key
+openai.api_key = openai_api_key
 
 
 def mlp_classifier(customer_input):
