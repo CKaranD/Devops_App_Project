@@ -7,6 +7,7 @@ from pre_negative_intent_classifier import pre_level_classifier
 from translation import translator
 from ada_options_checking import check_closer_option
 from get_openai_key import openai_api_key
+from query_chromadb import get_qa_chain
 
 
 def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_input):
@@ -47,6 +48,8 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
     print("Intent detected: ", pred)
     
     # conversation
+    is_vectordb = False
+    db_path = None
     if pred == "slow delivery service":
         from template_sub_slow_delivery_service import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
@@ -73,14 +76,24 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         from template_sub_career import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
 
+    elif pred == "loyalty benefits":
+        from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
+        is_vectordb = True
+        db_path = 'db/loyalty_benefits'
+
     # add more of such rule here for other intents, 
     # may need to re-organize their sequence and bot_flag for better visual
     else:
         from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
-        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
     
-    output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+    if is_vectordb == False:
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+    else:
+        qa_chain = get_qa_chain(db_path)
+        output = qa_chain.run(user_input)
+        _, summary_value = zusbot_vectordb(ZUS_TEMPLATE, pred, output, llm, user_input, memory, pickled_memory_file)
 
     # check bot_flag, and get user's response
     if bot_flag == 0:

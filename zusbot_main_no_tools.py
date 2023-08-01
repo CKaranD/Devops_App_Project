@@ -16,12 +16,12 @@ from zus_write_load_mem import write_memory, load_memory
 
 
 
-def keygen():    
-    with open('OPENAI_API_KEY_MINDHIVE.txt') as f:
-        openai_key = f.readlines()
-    openai_api_key = str(openai_key[0])
+# def keygen():    
+#     with open('OPENAI_API_KEY_MINDHIVE.txt') as f:
+#         openai_key = f.readlines()
+#     openai_api_key = str(openai_key[0])
     
-    return openai_api_key
+#     return openai_api_key
 
 
 def create_llm(openai_api_key):
@@ -89,8 +89,6 @@ def extract_response(text):
 
 
 def zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file):
-    # ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-    
     PROMPT = PromptTemplate(
     input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE)
 
@@ -119,7 +117,53 @@ def zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file):
         memory.memories[1].chat_memory.messages[1].content = filtered_output
         memory.memories[-1].buffer = "A customer introduces themselves to ZUSBot and asks for assistance."
     
-    summary_value = memory.memories[-1].buffer 
+    summary_value = memory.memories[-1].buffer
+    
+    # upload memory to AWS S3        
+    write_memory(memory, pickled_memory_file)
+
+    return filtered_output, summary_value
+
+
+def zusbot_vectordb(ZUS_TEMPLATE, intent, output_qa, llm, user_input, memory, pickled_memory_file):
+    PROMPT = PromptTemplate(
+    input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE)
+
+    # LLM chain consisting of the LLM and a prompt
+    llm_chain = ConversationChain(
+                llm=llm, 
+                verbose=False, 
+                memory=memory,
+                prompt=PROMPT
+            )
+    
+    output = llm_chain.run(input=user_input)
+
+    is_dialg1 = is_dialogue_01(output)
+    is_dialg2 = is_dialogue_02(output)
+
+    if is_dialg2 == True:
+        filtered_output = extract_response(output)
+    elif is_dialg1 == True:
+        filtered_output = output.splitlines()[0]
+    else:
+        filtered_output = output
+    
+    if is_dialg1 == True or is_dialg2 == True:        
+        memory.memories[0].chat_memory.messages[1].content = filtered_output
+        memory.memories[1].chat_memory.messages[1].content = filtered_output
+        memory.memories[-1].buffer = "A customer introduces themselves to ZUSBot and asks for assistance."
+    # replace the currently generated output with retrieval output         
+    memory.memories[0].chat_memory.messages[-1].content = output_qa
+    memory.memories[1].chat_memory.messages[-1].content = output_qa
+
+    # need to help with the shorten summary, 
+    # else the retrieval returns is too lengthy and cause token limit issue
+    if intent == "loyalty benefits":
+        memory.memories[-1].buffer += " The customer asks about loyalty benefits and ZUSBot provides some info."
+    # add more rules here, remember the 1 space before the injected summary fraction
+    
+    summary_value = memory.memories[-1].buffer
 
     # upload memory to AWS S3        
     write_memory(memory, pickled_memory_file)
