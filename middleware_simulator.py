@@ -38,8 +38,7 @@ while True: # the following lines are all in the while loop
 
     # for intents that need user to select resolution option
     # such as "slow delivery service" or "OOS"
-    if option_flag == 1:
-        # capture the option, and pass to zus backend                
+    if option_flag == 1:                       
         resolution_option = lambda_action_option(user_input, intent)
         # take the resolution_option and do what ever needed to zus backend
         print("resolution option: ", resolution_option)
