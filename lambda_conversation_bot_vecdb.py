@@ -14,7 +14,7 @@ def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, int
 
     if mem_flag == 0:
         memory = create_memory(llm)
-        mem_flag += 1
+        mem_flag = 1
     else:            
         memory = load_memory(pickled_memory_file)
 
@@ -35,8 +35,10 @@ def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, int
     output = qa_chain.run(user_input)
     _, summary_value = zusbot_vectordb(ZUS_TEMPLATE, intent, output, llm, user_input, memory, pickled_memory_file)
 
+    vecdb_flag = 1
+    eot_flag = 0 # always return eot_flag = 0
 
-    return output, summary_value
+    return output, summary_value, mem_flag, vecdb_flag, eot_flag
 
     # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
     

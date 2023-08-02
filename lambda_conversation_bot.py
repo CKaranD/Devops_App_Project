@@ -12,7 +12,7 @@ def lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, s
 
     if mem_flag == 0:
         memory = create_memory(llm)
-        mem_flag += 1
+        mem_flag = 1
     else:            
         memory = load_memory(pickled_memory_file)
 
@@ -54,7 +54,7 @@ def lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, s
     
     output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
-    return output, summary_value
+    return output, summary_value, mem_flag
 
     # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
     
