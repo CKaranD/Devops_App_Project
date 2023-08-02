@@ -31,8 +31,8 @@ while True: # the following lines are all in the while loop
             if eot_yes_no == "yes":
                 eot_flag = 1            
                 vecdb_flag = 0
-
-    if eot_flag == 0 and option_flag == 0:
+    
+    if vecdb_flag == 0 and option_flag == 0:
         intent = lambda_classifier(user_input)
         print("intent: ", intent)
 
@@ -58,7 +58,8 @@ while True: # the following lines are all in the while loop
             print(output)
             option_flag = 1
 
-            # how about intents that have a chain of options
+        # how about intents that have a chain of options
+        # most likely use another elif here
 
         else: # for intents that use vectorDB
             if vecdb_flag == 0 and eot_flag == 1:
@@ -83,4 +84,10 @@ while True: # the following lines are all in the while loop
 #               hence the need of activating lambda_end_of_topic() to check if there is a
 #               follow-up inquiry
 #
-# eot_flag => 
+# eot_flag => to check if end of topic is true
+#
+# option_flag => to check if there is a need to trigger lambda_action_option() 
+#                to capture user's resolution option
+#
+# option_done_flag => to inform the flow that resolution option is captured 
+#                     and exit into the relevant juncture
