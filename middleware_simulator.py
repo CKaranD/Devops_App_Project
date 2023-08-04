@@ -60,18 +60,36 @@ while True: # the following lines are all in the while loop
         # how about intents that have a chain of options
         # most likely use another elif here
 
-        else: # for intents that use vectorDB
+        elif intent == "loyalty benefits": # extend the 'or' here for intents that use vectorDB
             if vecdb_flag == 0 and eot_flag == 1:
                 output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
                 print(output)
             else:
                 output, chat_summary, mem_flag, vecdb_flag, eot_flag = lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, intent)        
                 print(output)
+        
+        # all other uncovered intents will be here (live agent hand over)
+        else:
+            if eot_flag == 1: # this is particular to handle situation when user just exit a topic
+                output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
+                print(output)
+            else:
+                break 
+                # break out of the while loop that relies on AI
+                # and direct the conversation to live agent
+                # not sure how you do it in middleware, but in Python just "break" out of the loop
+                # and continue at the bottom (see bottom)
 
     else:
         output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
         print(output)
         option_done_flag = 0
+
+# do whatever live agent stuff here (job for middleware)
+# such design is considered that once the live agent takes over
+# the flow is not going back to the AI anymore
+output = input("Hi, I am a live agent, I will take over from here. \n")
+print(output)
 
 
 

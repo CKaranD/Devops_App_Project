@@ -5,7 +5,7 @@ import re
 from get_openai_key import openai_api_key
 openai.api_key = openai_api_key
 
-template_begin = ". Please classify the above sentence as either a greeting, 'personal self-introduction', compliment, 'thank you', 'weather description', exclamation, or 'others'. Return only the exact answer (with exact words and spelling) from the above choices, if there is none to choose from, then return = 'others'. "
+template_begin = ". Please classify the above sentence as either a greeting, 'personal self-introduction', compliment, 'thank you', 'weather description', 'a name of someone', exclamation, or 'others'. Return only the exact answer (with exact words and spelling) from the above choices, if there is none to choose from, then return = 'others'. "
 
 # print("pre negative intent classifier token usage is about: ", len(template_begin)/4)
 
