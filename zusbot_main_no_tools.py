@@ -160,7 +160,9 @@ def zusbot_vectordb(ZUS_TEMPLATE, intent, output_qa, llm, user_input, memory, pi
     # need to help with the shorten summary, 
     # else the retrieval returns is too lengthy and cause token limit issue
     if intent == "loyalty benefits":
-        memory.memories[-1].buffer += " The customer asks about loyalty benefits and ZUSBot provides some info."
+        memory.memories[-1].buffer += " The customer asks information about loyalty benefits and ZUSBot provides some info."
+    elif intent == "product / menu details":
+        memory.memories[-1].buffer += " The customer asks information about a ZUS product and ZUSBot provides some info."
     # add more rules here, remember the 1 space before the injected summary fraction
     
     summary_value = memory.memories[-1].buffer

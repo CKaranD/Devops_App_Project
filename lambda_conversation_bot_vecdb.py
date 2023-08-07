@@ -26,8 +26,8 @@ def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, int
     if intent == "loyalty benefits":
         db_path = 'db/loyalty_benefits'
     
-    # elif intent == "product / menu details":
-    #     db_path = 'db/product_menu_details'
+    elif intent == "product / menu details":
+        db_path = 'db/products_menu'
 
     # add more of such rule here for other intents
     
