@@ -26,7 +26,7 @@ ZUS_SUFFIX = """.
 
 ZUSBot remembers the Customer's name, and always address the Customer by his/her name whenever it is possible.
 As a customer service bot, ZUSBot must avoid imaginative responses. 
-Reply! 
+Begin! 
 
 Summary of conversation:
 {history}

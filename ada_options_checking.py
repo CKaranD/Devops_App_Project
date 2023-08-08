@@ -1,9 +1,8 @@
 import openai
 import numpy as np
 
-with open('OPENAI_API_KEY_MINDHIVE.txt') as f:
-    openai_key = f.readlines()
-openai.api_key = str(openai_key[0])
+from get_openai_key import openai_api_key
+openai.api_key = openai_api_key
 
 
 def check_closer_option(user_input, options):    
@@ -11,7 +10,8 @@ def check_closer_option(user_input, options):
 
     # Find the index of the option with the highest score
     closest_index = similarity_scores.index(max(similarity_scores))
-    return f"The customer selected option ({closest_index + 1})"
+    # return f"The customer selected option ({closest_index + 1})"
+    return f"option ({closest_index + 1})"
 
 
 def ada_embedding(text_input):

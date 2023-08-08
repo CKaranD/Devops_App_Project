@@ -9,3 +9,4 @@ plotly
 scipy
 google-api-python-client
 pycld3
+chromadb==0.3.21

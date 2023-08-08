@@ -5,7 +5,8 @@ from detect_language import detect_language
 from mlp_classifier import mlp_classifier
 from pre_negative_intent_classifier import pre_level_classifier
 from translation import translator
-from levenshtein_options_checking import check_closer_option
+from get_openai_key import openai_api_key
+
 
 def lambda_handler(event, context):
     # Set MPLCONFIGDIR to /tmp
@@ -16,8 +17,6 @@ def lambda_handler(event, context):
     option_flag = event['option_flag']
     pickled_memory_file = event['pickled_memory_file']
     user_input = event['user_input']
-
-    openai_api_key = keygen()
 
     llm = create_llm(openai_api_key)        
 

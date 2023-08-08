@@ -6,11 +6,14 @@ from mlp_classifier import mlp_classifier
 from pre_negative_intent_classifier import pre_level_classifier
 from translation import translator
 from ada_options_checking import check_closer_option
+from get_openai_key import openai_api_key
+from query_chromadb import get_qa_chain
+
 
 def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_input):
     # Set MPLCONFIGDIR to /tmp
     # os.environ['MPLCONFIGDIR'] = '/tmp'    
-    openai_api_key = keygen()
+    # openai_api_key = keygen()
 
     llm = create_llm(openai_api_key)        
 
@@ -42,15 +45,16 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
                 pred = "negative intent"
             else:                
                 pred = mlp_intent
-    print("pred: ", pred)
+    print("Intent detected: ", pred)
     
     # conversation
+    is_vectordb = False
+    db_path = None
     if pred == "slow delivery service":
         from template_sub_slow_delivery_service import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
         order_num = input("Bot reply: May I have your order number please? \n")
-        # verify if the number is valid, and do some backend proces with order_num
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        # verify if the number is valid, and do some backend proces with order_num        
         bot_flag = 1 # set bot_flag
         output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
@@ -58,8 +62,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         from template_sub_oos import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
         order_num = input("Bot reply: May I have your order number please? \n")
-        # verify if the number is valid, and do some backend proces with order_num
-        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        # verify if the number is valid, and do some backend proces with order_num        
         bot_flag = 2 # set bot_flag
         output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
@@ -70,62 +73,25 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         # for debug, we set the status here for testing
         status = 3
         ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
-
-    elif pred == "pick info / status":
-        from template_sub_pickup_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
-        order_num = input("Bot reply: May I have your order number please? \n")
-        # check the status from the backend database and select the answering scheme (1) to (4)
-        # for debug, we set the status here for testing
-        status = 3
-        ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
-
-    elif pred == "performance - barista behaviour / service":
-        from template_sub_barista_behaviour_service import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
-        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        order_num = input("Bot reply: May I have your order number please? \n")        
-        # check the status from the backend database and select the answering scheme (1) to (2)
         
-        bot_flag = 3 # set bot_flag
-
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
-
     elif pred == "zus career":
-        from template_sub_zus_career import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
-        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
-
-        bot_flag = 4 # set bot_flag
-
-    elif pred == "payment error / failure":
-        from template_sub_payment_error_failure import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
-        order_num = input("Bot reply: May I have your order number please? \n")
-        # check the payment status from the backend database and select the answering scheme (1) to (4)
-        # for debug, we set the status here for testing
-        payment_status = 2
-        ZUS_TEMPLATE = ZUS_PREFIX + str(payment_status) + SCHEME_SPLIT1 + str(payment_status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
-
-        bot_flag = 5 # set bot_flag
+        from template_sub_career import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
 
     elif pred == "loyalty benefits":
-
-        db_path = "db/loyalty_benefits"
-        
-        output, summary_value = zusbot("", llm, user_input, memory, pickled_memory_file, True, db_path)
-
-        bot_flag = 6 # set bot_flag
-        
+        from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
+        is_vectordb = True
+        db_path = 'db/loyalty_benefits'
 
     # add more of such rule here for other intents, 
     # may need to re-organize their sequence and bot_flag for better visual
     else:
         from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
     
-    # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
+    output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     # check bot_flag, and get user's response
     if bot_flag == 0:
@@ -205,5 +171,5 @@ while True:
                                                                 pickled_memory_file, user_input)
 
     print("Bot reply: ", output)
-    print("Chat summary: ", summary_value)
-    print("Resolution option: ", resolution_option)
+    print("\nChat summary: ", summary_value)
+    print("\nResolution option: ", resolution_option)

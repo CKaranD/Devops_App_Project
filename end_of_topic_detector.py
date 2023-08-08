@@ -5,9 +5,7 @@ import re
 from get_openai_key import openai_api_key
 openai.api_key = openai_api_key
 
-template_begin = ". Please classify the above sentence as either a greeting, 'personal self-introduction', compliment, 'thank you', 'weather description', 'a name of someone', exclamation, or 'others'. Return only the exact answer (with exact words and spelling) from the above choices, if there is none to choose from, then return = 'others'. "
-
-# print("pre negative intent classifier token usage is about: ", len(template_begin)/4)
+template_begin = ". If the above INPUT sentence has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', 'i am good to go', or 'anything that is relevant to the end of a chat', then return 'yes'. Else return 'no'. "
 
 def json_obj_maker(head, customer_input, template):
     asst_prompt = '"' + customer_input + template + '"}'
@@ -16,27 +14,19 @@ def json_obj_maker(head, customer_input, template):
     return json_obj
 
 def extract_intent(input_string):
-    match1 = re.search(r'\bothers\b', input_string)
-    match2 = re.search(r'\bcompliment\b', input_string)
-    if match1 or match2:
+    match1 = re.search(r'\byes\b', input_string)    
+    if match1:
         return False
     else:
         return True
-    
 
-def check_GPT_intent_makeup(intent, patterns):
-    for item in patterns:
-        if re.search(item, intent):
-            return intent
-    return "negative intent"
-
-def pre_level_classifier(customer_input):    
+def EOT_checker(customer_input):    
     translate_table = str.maketrans('"', "'")
     customer_input = customer_input.translate(translate_table)  
     customer_head =  '{"role": "user", "content": '
     
     all_prompt = [
-            {"role": "system", "content": "You are an intent classifier."},
+            {"role": "system", "content": "You are a context detector."},
             json_obj_maker(customer_head, customer_input, template_begin)               
             ]
 
@@ -44,7 +34,7 @@ def pre_level_classifier(customer_input):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         temperature=0,
-        max_tokens=16,
+        max_tokens=8,
         messages=all_prompt,
         top_p=1,
         frequency_penalty=0,
@@ -66,12 +56,13 @@ def pre_level_classifier(customer_input):
     is_negative = extract_intent(intent)
     
     if is_negative == True:
-        pre_intent = "negative intent"
+        intent = "no"
     else:
-        pre_intent = "check further"
+        intent = "yes"
 
-    # print("pre_level_classifier: ", pre_intent)
-    return pre_intent
+    return intent
 
+# debug script
 # customer_input = input()
-# pre_level_classifier(customer_input)
+# intent = EOT_checker(customer_input)
+# print(intent)
