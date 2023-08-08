@@ -26,4 +26,7 @@ def lambda_action_option(user_input, intent):
         ]
         resolution_option = check_closer_option(user_input, options)
 
-    return resolution_option
+    option_flag = 0
+    option_done_flag = 1
+
+    return resolution_option, option_flag, option_done_flag

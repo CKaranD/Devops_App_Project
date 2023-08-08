@@ -27,11 +27,8 @@ while True: # the following lines are all in the while loop
         # need a flag to active this line (a flag 
         # that confirms there was an intent that uses vectorDB before this)
         if vecdb_flag == 1:
-            eot_yes_no = lambda_end_of_topic(user_input)            
-            if eot_yes_no == "yes":
-                eot_flag = 1            
-                vecdb_flag = 0
-    
+            eot_flag, vecdb_flag = lambda_end_of_topic(user_input, eot_flag, vecdb_flag)            
+                
     if vecdb_flag == 0 and option_flag == 0:
         intent = lambda_classifier(user_input)
         print("intent: ", intent)
@@ -39,11 +36,9 @@ while True: # the following lines are all in the while loop
     # for intents that need user to select resolution option
     # such as "slow delivery service" or "OOS"
     if option_flag == 1:                       
-        resolution_option = lambda_action_option(user_input, intent)
+        resolution_option, option_flag, option_done_flag = lambda_action_option(user_input, intent)
         # take the resolution_option and do what ever needed to zus backend
         print("resolution option: ", resolution_option)
-        option_flag = 0
-        option_done_flag = 1
 
     # middleware if/else rules
     if (intent != "negative intent" or eot_flag == 1) and option_done_flag == 0:
