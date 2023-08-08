@@ -3,10 +3,12 @@ import re
     
 import openai
 from langchain import LLMChain
-from langchain.chains import ConversationChain
+from langchain.chains import (ConversationChain, ConversationalRetrievalChain)
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import (CombinedMemory, ConversationBufferMemory,
                             ConversationSummaryMemory)    
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
 
 # from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX,
 #                                 ZUS_SUFFIX)
@@ -30,7 +32,7 @@ def create_llm(openai_api_key):
             temperature=0,
             max_tokens = 2048)
     return llm
-    
+
 
 def create_memory(llm):
     # define the memory sets

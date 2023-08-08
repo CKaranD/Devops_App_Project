@@ -56,6 +56,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         order_num = input("Bot reply: May I have your order number please? \n")
         # verify if the number is valid, and do some backend proces with order_num        
         bot_flag = 1 # set bot_flag
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     elif pred == "OOS":
         from template_sub_oos import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
@@ -63,6 +64,7 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
         order_num = input("Bot reply: May I have your order number please? \n")
         # verify if the number is valid, and do some backend proces with order_num        
         bot_flag = 2 # set bot_flag
+        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     elif pred == "delivery info / status":
         from template_sub_delivery_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
@@ -86,14 +88,10 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
     # may need to re-organize their sequence and bot_flag for better visual
     else:
         from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
-        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
+        # output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
     
-    if is_vectordb == False:
-        output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
-    else:
-        qa_chain = get_qa_chain(db_path)
-        output = qa_chain.run(user_input)
-        _, summary_value = zusbot_vectordb(ZUS_TEMPLATE, pred, output, llm, user_input, memory, pickled_memory_file)
+    output, summary_value = zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file)
 
     # check bot_flag, and get user's response
     if bot_flag == 0:
@@ -124,6 +122,31 @@ def lambda_handler(mem_flag, bot_flag, option_flag, pickled_memory_file, user_in
             resolution_option = check_closer_option(user_input, options)
             option_flag = 0
             bot_flag = 0
+
+    # Performance - Barista Behaviour / Service
+    elif bot_flag == 3:
+        resolution_option = "None"
+        option_flag += 1
+        if option_flag >= 2:
+            options = [
+                "option (1): Order picked up but status not changed",
+                "option (2): Barista/Staff attitude, behaviour, or service"
+            ]
+            resolution_option = check_closer_option(user_input, options)
+            option_flag = 0
+            bot_flag = 0
+
+    # ZUS Career
+    if bot_flag == 4:
+        resolution_option = "None"
+
+    # Payment Error / Failure
+    if bot_flag == 5:
+        resolution_option = "None"
+
+    # Loyalty Benefits
+    if bot_flag == 6:
+        resolution_option = "None"
 
     # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
     
