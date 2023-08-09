@@ -22,7 +22,7 @@ def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, int
     language = detect_language(user_input)
     ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
             
-    # retrieval
+    # DB retrieval directories
     if intent == "loyalty benefits":
         db_path = 'db/loyalty_benefits'
     

@@ -8,9 +8,9 @@ def lambda_end_of_topic(customer_input, eot_flag, vecdb_flag):
     eot_yes_no = EOT_checker(customer_input)
     if eot_yes_no == "yes":
         eot_flag = 1            
-        vecdb_flag = 0
+        vecdb_flag = 0        
     else:
         eot_flag = eot_flag            
         vecdb_flag = vecdb_flag
-
+        
     return eot_flag, vecdb_flag

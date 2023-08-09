@@ -1,8 +1,8 @@
-from lambda_classifier import lambda_classifier
-from lambda_conversation_bot import lambda_conversation_bot
-from lambda_conversation_bot_vecdb import lambda_conversation_bot_vecdb
-from lambda_action_option import lambda_action_option
-from lambda_end_of_topic import lambda_end_of_topic
+from lambda_classifier_local import lambda_classifier
+from lambda_conversation_bot_local import lambda_conversation_bot
+from lambda_conversation_bot_vecdb_local import lambda_conversation_bot_vecdb
+from lambda_action_option_local import lambda_action_option
+from lambda_end_of_topic_local import lambda_end_of_topic
 
 # imagine that the middleware is running as a while loop
 
