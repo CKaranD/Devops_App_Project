@@ -1,3 +1,4 @@
+import os
 import json
 from detect_language import detect_language
 from mlp_classifier import mlp_classifier
@@ -12,9 +13,11 @@ def create_json_object(pred):
     return json_object
 
 
-def lambda_classifier(user_input):
+def lambda_classifier(event, context):
     # Set MPLCONFIGDIR to /tmp
-    # os.environ['MPLCONFIGDIR'] = '/tmp'    
+    os.environ['MPLCONFIGDIR'] = '/tmp'
+    
+    user_input = event['user_input']
 
     # detect input language
     language = detect_language(user_input)
@@ -38,11 +41,10 @@ def lambda_classifier(user_input):
                 pred = "negative intent"
             else:                
                 pred = mlp_intent
-    
-    return pred
-        
-    # deployment uses the following
-    # json_obj = create_json_object(pred)
+
+    json_obj = create_json_object(pred)
+
+    return json_obj
     
 
 

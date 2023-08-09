@@ -1,13 +1,26 @@
 import os
+import json
 from zusbot_main_no_tools import *
-from json_object_maker import create_json_object
 from ada_options_checking import check_closer_option
 
 
-def lambda_action_option(user_input, intent):
+def create_json_object(resolution_option, option_flag, option_done_flag):
+    data = {
+        "resolution_option": resolution_option,
+        "option_flag": option_flag,
+        "option_done_flag": option_done_flag   
+    }
+    json_object = json.dumps(data)
+    return json_object
+
+
+def lambda_action_option(event, context):
     # Set MPLCONFIGDIR to /tmp
-    # os.environ['MPLCONFIGDIR'] = '/tmp'    
-        
+    os.environ['MPLCONFIGDIR'] = '/tmp'
+
+    user_input = event['user_input']
+    intent = event['intent']
+    
     resolution_option = "None"
     
     # slow delivery service
@@ -29,4 +42,6 @@ def lambda_action_option(user_input, intent):
     option_flag = 0
     option_done_flag = 1
 
-    return resolution_option, option_flag, option_done_flag
+    json_obj = create_json_object(resolution_option, option_flag, option_done_flag)
+
+    return json_obj

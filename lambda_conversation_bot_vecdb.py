@@ -1,15 +1,33 @@
 import os
+import json
 from zusbot_main_no_tools import *
-from json_object_maker import create_json_object
 from detect_language import detect_language
 from get_openai_key import openai_api_key
 from query_chromadb import get_qa_chain
 from template_main_v4 import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
 
 
-def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, intent):
+def create_json_object(output, summary_value, mem_flag, vecdb_flag, eot_flag):
+    data = {
+        "output": output,
+        "summary_value": summary_value,
+        "mem_flag": mem_flag,
+        "vecdb_flag": vecdb_flag,
+        "eot_flag": eot_flag  
+    }
+    json_object = json.dumps(data)
+    return json_object
+
+
+def lambda_conversation_bot_vecdb(event, context):
     # Set MPLCONFIGDIR to /tmp
-    # os.environ['MPLCONFIGDIR'] = '/tmp'    
+    os.environ['MPLCONFIGDIR'] = '/tmp'
+
+    mem_flag = event['mem_flag']
+    pickled_memory_file = event['pickled_memory_file']
+    user_input = event['user_input']
+    intent = event['intent']
+
     llm = create_llm(openai_api_key)        
 
     if mem_flag == 0:
@@ -38,10 +56,8 @@ def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, int
     vecdb_flag = 1
     eot_flag = 0 # always return eot_flag = 0
 
-    return output, summary_value, mem_flag, vecdb_flag, eot_flag
-
-    # json_obj = create_json_object(user_input, output, summary_value, mem_flag)
+    json_obj = create_json_object(output, summary_value, mem_flag, vecdb_flag, eot_flag)
     
-    # return output, summary_value, mem_flag, bot_flag, option_flag, resolution_option
+    return json_obj
 
 
