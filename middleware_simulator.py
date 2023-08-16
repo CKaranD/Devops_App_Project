@@ -14,7 +14,7 @@ option_flag = 0
 option_done_flag = 0
 
 # define chat memory pickle file name
-pickled_memory_file = "testing_phase2.pickle"
+pickled_memory_file = "my_local_test.pickle"
 
 
 while True: # the following lines are all in the while loop

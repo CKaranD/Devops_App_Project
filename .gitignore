@@ -8,6 +8,7 @@ AWS_S3_KEY/
 *.sh
 *.zip
 *Dockerfile*
+*hnswlib_build*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

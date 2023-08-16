@@ -1,6 +1,5 @@
 import os
 import json
-from zusbot_main_no_tools import *
 from ada_options_checking import check_closer_option
 
 

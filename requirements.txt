@@ -1,3 +1,8 @@
+# the following are only for lambda_conversation_bot_vecdb
+# chromadb==0.3.21
+# tiktoken
+# =====================
+
 openai
 pandas
 numpy
@@ -7,6 +12,5 @@ boto3
 matplotlib
 plotly
 scipy
-google-api-python-client
+# google-api-python-client
 pycld3
-chromadb==0.3.21

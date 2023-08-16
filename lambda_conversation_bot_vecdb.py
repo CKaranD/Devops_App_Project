@@ -47,6 +47,9 @@ def lambda_conversation_bot_vecdb(event, context):
     elif intent == "product / menu details":
         db_path = 'db/products_menu'
 
+    elif intent == "birthday / vouchers":
+        db_path = 'db/birthday_vouchers'
+
     # add more of such rule here for other intents
     
     qa_chain = get_qa_chain(db_path)

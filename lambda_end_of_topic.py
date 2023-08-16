@@ -16,11 +16,11 @@ def lambda_end_of_topic(event, context):
     # Set MPLCONFIGDIR to /tmp
     os.environ['MPLCONFIGDIR'] = '/tmp'
 
-    customer_input = event['customer_input']
+    user_input = event['user_input']
     eot_flag = event['eot_flag']
     vecdb_flag = event['vecdb_flag']
     
-    eot_yes_no = EOT_checker(customer_input)
+    eot_yes_no = EOT_checker(user_input)
     if eot_yes_no == "yes":
         eot_flag = 1            
         vecdb_flag = 0        
