@@ -63,6 +63,12 @@ while True: # the following lines are all in the while loop
             else:
                 output, chat_summary, mem_flag, vecdb_flag, eot_flag = lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, intent)        
                 print(output)
+                
+        elif intent == "zus career":
+
+            output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
+            print(output)
+
 
         # all other uncovered intents will be here (live agent hand over)
         else:
