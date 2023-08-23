@@ -12,7 +12,7 @@ def mlp_classifier(customer_input):
     emb_test_data = [get_embedding(customer_input, engine=embedding_model)]
 
     # load model
-    model_name = "gen2_model_04.pickle"
+    model_name = "gen2_model_05.pickle"
     model = pickle.load(open(model_name, "rb"))
     preds = model.predict(emb_test_data)
 
