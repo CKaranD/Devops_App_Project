@@ -40,31 +40,17 @@ def lambda_conversation_bot(event, context):
     if intent == "slow delivery service":
         from template_sub_slow_delivery_service import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        # order_num = input("Bot reply: May I have your order number please? \n")
-        # verify if the number is valid, and do some backend proces with order_num        
-        # bot_flag = 1 # set bot_flag
 
     elif intent == "OOS":
         from template_sub_oos import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
-        # order_num = input("Bot reply: May I have your order number please? \n")
-        # verify if the number is valid, and do some backend proces with order_num        
-        # bot_flag = 2 # set bot_flag
 
     elif intent == "delivery info / status":
         from template_sub_delivery_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
-        # order_num = input("Bot reply: May I have your order number please? \n")
-        # check the status from the backend database and select the answering scheme (1) to (4)
-        # for debug, we set the status here for testing
-        # status = 3
         ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
     
     elif intent == "pickup info / status":
         from template_sub_pickup_info_status import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX, SCHEME_SPLIT1, SCHEME_SPLIT2)        
-        # order_num = input("Bot reply: May I have your order number please? \n")
-        # check the status from the backend database and select the answering scheme (1) to (4)
-        # for debug, we set the status here for testing
-        # status = 3
         ZUS_TEMPLATE = ZUS_PREFIX + str(status) + SCHEME_SPLIT1 + str(status) + SCHEME_SPLIT2 + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX        
         
     elif intent == "zus career":
