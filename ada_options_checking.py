@@ -32,7 +32,7 @@ def cal_distance(user_input, option):
 
 ###### TESTING SCRIPT (comment out when not testing) #####
 # options = [
-#     "option (1): Take full refund",
+#     "option (1): Take full refund (refund order)",
 #     "option (2): Take partial refund"
 # ]
 
