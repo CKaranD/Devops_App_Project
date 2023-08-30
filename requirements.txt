@@ -1,13 +1,13 @@
 # the following are only for lambda_conversation_bot_vecdb
-# chromadb==0.3.21
-# tiktoken
+chromadb==0.3.21
+tiktoken
 # =====================
 
 openai
 pandas
 numpy
-scikit-learn==1.2.2
 langchain==0.0.148
+scikit-learn==1.2.2
 boto3
 matplotlib
 plotly

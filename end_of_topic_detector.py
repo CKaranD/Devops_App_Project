@@ -5,12 +5,14 @@ import re
 from get_openai_key import openai_api_key
 openai.api_key = openai_api_key
 
-template_begin = ". If the above INPUT sentence has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', 'i am good to go', or 'anything that is relevant to the end of a chat', then return 'yes'. Else return 'no'. "
+template_begin = """. 
+
+You job is to detect if #Input# indicate an end of a conversation. If the #Input# has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', 'i am good to go', or 'anything that is relevant to the end of a chat', then return 'yes'. Else return 'no'. """
 
 def json_obj_maker(head, customer_input, template):
-    asst_prompt = '"' + customer_input + template + '"}'
+    asst_prompt = '"' + '#Input# ' + customer_input + template + '"}'
     merged_dict = head + asst_prompt    
-    json_obj = json.loads(merged_dict)
+    json_obj = json.loads(merged_dict, strict=False)
     return json_obj
 
 def extract_intent(input_string):
@@ -26,7 +28,7 @@ def EOT_checker(customer_input):
     customer_head =  '{"role": "user", "content": '
     
     all_prompt = [
-            {"role": "system", "content": "You are a context detector."},
+            {"role": "system", "content": "You are an end-of-conversation detector."},
             json_obj_maker(customer_head, customer_input, template_begin)               
             ]
 

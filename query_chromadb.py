@@ -2,18 +2,42 @@ from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
+from langchain.prompts import PromptTemplate
 
 from get_openai_key import openai_api_key
+
+
+prompt_template = """You are ZUS Coffee's customer service chatbot known as ZUSBot. The Customer is inquiring some information from ZUSBot. ZUSBot's objective is to use the information in #Given Context# to answer the inquiry of the Customer. ZUSBot must reply based on the information from #Given Context# only.
+ZUSBot must avoid imaginative responses. Imaginative suggestions are not allowed. 
+If there is no relevant information found in #Given Context#, just say that you don't know, never make up an answer. 
+Do not ask for Customer's details. Do not commit actions.
+
+#Given Context#
+{context}
+
+
+Customer: {question}
+ZUSBot:"""
+
+PROMPT = PromptTemplate(
+    template=prompt_template, input_variables=["context", "question"]
+)
+
+chain_type_kwargs = {"prompt": PROMPT}
+
 
 def get_qa_chain(persist_dir):
     vectordb = Chroma(persist_directory=persist_dir, embedding_function=OpenAIEmbeddings(openai_api_key=openai_api_key))
     retriever = vectordb.as_retriever(search_kwargs={"k": 1}) # define how many documents in the dir
     return RetrievalQA.from_chain_type(
         llm=ChatOpenAI(openai_api_key=openai_api_key, 
+                       model_name='gpt-3.5-turbo',
                        temperature=0,
                        max_tokens=512), 
         chain_type="stuff", 
-        retriever=retriever)
+        retriever=retriever,
+        chain_type_kwargs=chain_type_kwargs)
+
 
 
 # qa_chain = get_qa_chain('db/loyalty_benefits')
