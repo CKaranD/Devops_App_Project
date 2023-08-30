@@ -7,7 +7,7 @@ openai.api_key = openai_api_key
 
 template_begin = """. 
 
-You job is to detect if #Input# indicate an end of a conversation. If the #Input# has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', 'i am good to go', or 'anything that is relevant to the end of a chat', then return 'yes'. Else return 'no'. """
+You job is to detect if #Input# indicates an end of a conversation. If the #Input# has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', 'i am good to go', or 'anything that is relevant to the end of a chat', then return 'yes'. Else return 'no'. """
 
 def json_obj_maker(head, customer_input, template):
     asst_prompt = '"' + '#Input# ' + customer_input + template + '"}'
