@@ -68,6 +68,6 @@ def EOT_checker(customer_input):
     return intent
 
 # debug script
-customer_input = input()
-intent = EOT_checker(customer_input)
-print(intent)
+# customer_input = input()
+# intent = EOT_checker(customer_input)
+# print(intent)
