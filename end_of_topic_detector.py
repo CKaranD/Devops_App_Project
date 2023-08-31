@@ -7,7 +7,10 @@ openai.api_key = openai_api_key
 
 template_begin = """. 
 
-You job is to detect if #Input# indicates an end of a conversation. If the #Input# has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', or 'i am good to go', then return 'yes'. Else return 'no'. """
+You job is to detect if #Input# indicates an end of a conversation. Answer 'yes' if it is an end of a conversation, answer 'no' if it is not. Use the following #Guideline# to understand better.
+
+#Guideline#:
+If the #Input# has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', or 'i am good to go', then return 'yes'. Else return 'no'. """
 
 def json_obj_maker(head, customer_input, template):
     asst_prompt = '"' + '#Input# ' + customer_input + template + '"}'
@@ -31,7 +34,7 @@ def EOT_checker(customer_input):
             {"role": "system", "content": "You are an end-of-conversation detector."},
             json_obj_maker(customer_head, customer_input, template_begin)               
             ]
-
+    print(all_prompt)
     # Generate a text completion for a given prompt using the "gpt-3.5-turbo" language model
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -65,6 +68,6 @@ def EOT_checker(customer_input):
     return intent
 
 # debug script
-# customer_input = input()
-# intent = EOT_checker(customer_input)
-# print(intent)
+customer_input = input()
+intent = EOT_checker(customer_input)
+print(intent)
