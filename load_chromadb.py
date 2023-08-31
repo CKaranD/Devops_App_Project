@@ -14,12 +14,12 @@ openai_api_key = str(openai_key[0])
 
 if not (os.path.exists('chroma-collections.parquet') and os.path.exists('chroma-embeddings.parquet')):
     # loader = DirectoryLoader(os.environ['LOAD_DIR'])
-    loader = TextLoader('db_text/merged_birthday_vouchers_loyalty_benefits.txt')
+    loader = TextLoader('db_text/outlet_details.txt')
     documents = loader.load()
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     docs = text_splitter.split_documents(documents)
     vectordb = Chroma.from_documents(
         documents=docs, 
         embedding=OpenAIEmbeddings(openai_api_key=openai_api_key), 
-        persist_directory='db/birthday_vouchers')
+        persist_directory='db/outlet_details')
     vectordb.persist()

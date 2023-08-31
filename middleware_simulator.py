@@ -54,7 +54,7 @@ while True: # the following lines are all in the while loop
         # how about intents that have a chain of options
         # most likely use another elif here
 
-        elif intent == "loyalty benefits" or intent == "product / menu details" or intent == "birthday / vouchers":
+        elif intent == "loyalty benefits" or intent == "product / menu details" or intent == "birthday / vouchers" or intent == "outlet details":
 
             if vecdb_flag == 0 and eot_flag == 1:
                 output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)

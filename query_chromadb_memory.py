@@ -3,6 +3,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
+from langchain.memory import ConversationBufferMemory
 
 from get_openai_key import openai_api_key
 
@@ -16,14 +17,16 @@ Do not ask for Customer's details. Do not commit actions.
 {context}
 
 
+{history}
 Customer: {question}
 ZUSBot:"""
 
 PROMPT = PromptTemplate(
-    template=prompt_template, input_variables=["context", "question"]
+    template=prompt_template, input_variables=["history", "context", "question"]
 )
 
-chain_type_kwargs = {"prompt": PROMPT}
+chain_type_kwargs = {"prompt": PROMPT,
+                     "memory": ConversationBufferMemory(memory_key="history", input_key="question")}
 
 
 def get_qa_chain(persist_dir):
@@ -40,7 +43,7 @@ def get_qa_chain(persist_dir):
 
 
 
-# qa_chain = get_qa_chain('db/loyalty_benefits')
+# qa_chain = get_qa_chain('db/outlet_details')
 # while True:
 #     user_input = input("Customer: ")
 #     output = qa_chain.run(user_input)
