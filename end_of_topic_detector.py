@@ -7,7 +7,7 @@ openai.api_key = openai_api_key
 
 template_begin = """. 
 
-You job is to detect if #Input# indicates an end of a conversation. Answer 'yes' if it is an end of a conversation, answer 'no' if it is not. Use the following #Guideline# to understand better.
+Your job is to detect if #Input# indicates an end of a conversation. Answer 'yes' if it is an end of a conversation, answer 'no' if it is not. Use the following #Guideline# to understand better.
 
 #Guideline#:
 If the #Input# has any elements that is related to either one of the following contexts: 'thanks for your help', 'ok', 'alright', 'good', 'great', 'good to know', 'i see', 'that is all i needed', 'that is all', 'thank you', or 'i am good to go', then return 'yes'. Else return 'no'. """
