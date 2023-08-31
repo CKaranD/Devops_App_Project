@@ -34,7 +34,7 @@ def EOT_checker(customer_input):
             {"role": "system", "content": "You are an end-of-conversation detector."},
             json_obj_maker(customer_head, customer_input, template_begin)               
             ]
-    print(all_prompt)
+    
     # Generate a text completion for a given prompt using the "gpt-3.5-turbo" language model
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
