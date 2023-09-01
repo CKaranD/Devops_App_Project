@@ -58,6 +58,7 @@ while True: # the following lines are all in the while loop
 
             if vecdb_flag == 0 and eot_flag == 1:
                 output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
+                eot_flag = 0 # new
                 print(output)
             else:
                 output, chat_summary, mem_flag, vecdb_flag, eot_flag = lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, intent)        
@@ -73,6 +74,7 @@ while True: # the following lines are all in the while loop
         else:
             if eot_flag == 1: # this is particular to handle situation when user just exit a topic
                 output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
+                eot_flag = 0 # new
                 print(output)
             else:
                 break 

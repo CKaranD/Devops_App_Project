@@ -39,7 +39,7 @@ def get_qa_chain(persist_dir):
         chain_type_kwargs=chain_type_kwargs)
 
 
-
+##### debugging lines
 # qa_chain = get_qa_chain('db/loyalty_benefits')
 # while True:
 #     user_input = input("Customer: ")

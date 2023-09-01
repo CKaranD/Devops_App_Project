@@ -5,7 +5,9 @@ import re
 from get_openai_key import openai_api_key
 openai.api_key = openai_api_key
 
-template_begin = ". Please classify the above sentence as either a greeting, 'personal self-introduction', compliment, 'thank you', 'i do not have phone number', 'a name of someone', exclamation, farewell, goodbye or 'others'. Return only the exact answer (with exact words and spelling) from the above choices, if there is none to choose from, then return = 'others'. "
+# template_begin = ". Please classify the above sentence as either a greeting, 'personal self-introduction', short compliment, 'thank you', 'that is all', 'i do not have phone number', 'a name of someone', exclamation, farewell, goodbye or 'others'. Return only the exact answer (with exact words and spelling) from the above choices, if there is none to choose from, then return = 'others'. "
+
+template_begin = ". Categorize the following statement with the appropriate term: 'Greeting', 'Personal Self-Introduction', 'Thank You', 'OK Great', 'Good', 'thats all thank you',  'That Is All', 'I Do Not Have Phone Number', 'A Name Of Someone', 'Exclamation', 'Farewell', 'Goodbye', 'compliment', or 'Others'. Respond ONLY with the exact term or 'Others' if none apply. "
 
 # print("pre negative intent classifier token usage is about: ", len(template_begin)/4)
 
