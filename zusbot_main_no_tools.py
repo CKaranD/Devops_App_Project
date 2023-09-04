@@ -132,7 +132,7 @@ def zusbot_vectordb(ZUS_TEMPLATE, intent, output_qa, llm, user_input, memory, pi
     input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE)
 
     # LLM chain consisting of the LLM and a prompt
-    print("before: ", memory.memories[-1].buffer)
+    # print("before: ", memory.memories[-1].buffer)
     temp_mem = memory.memories[-1].buffer
     llm_chain = ConversationChain(
                 llm=llm, 
@@ -179,7 +179,7 @@ def zusbot_vectordb(ZUS_TEMPLATE, intent, output_qa, llm, user_input, memory, pi
         memory.memories[-1].buffer += add_string
 
     summary_value = memory.memories[-1].buffer    
-    print("summary: ", summary_value)
+    # print("summary: ", summary_value)
 
     # upload memory to AWS S3        
     write_memory(memory, pickled_memory_file)
