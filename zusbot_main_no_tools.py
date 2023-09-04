@@ -29,7 +29,7 @@ from zus_write_load_mem import write_memory, load_memory
 def create_llm(openai_api_key):
     llm=ChatOpenAI(openai_api_key=openai_api_key, 
             model_name='gpt-3.5-turbo',
-            temperature=0,
+            temperature=0.6,
             max_tokens = 2048)
     return llm
 
@@ -132,6 +132,8 @@ def zusbot_vectordb(ZUS_TEMPLATE, intent, output_qa, llm, user_input, memory, pi
     input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE)
 
     # LLM chain consisting of the LLM and a prompt
+    print("before: ", memory.memories[-1].buffer)
+    temp_mem = memory.memories[-1].buffer
     llm_chain = ConversationChain(
                 llm=llm, 
                 verbose=False, 
@@ -161,17 +163,23 @@ def zusbot_vectordb(ZUS_TEMPLATE, intent, output_qa, llm, user_input, memory, pi
 
     # need to help with the shorten summary, 
     # else the retrieval returns is too lengthy and cause token limit issue
+    memory.memories[-1].buffer = temp_mem
     if intent == "loyalty benefits":
-        memory.memories[-1].buffer += " The customer asks information about loyalty benefits, and ZUSBot provides some info."
+        add_string = " The customer asks information about loyalty benefits, and ZUSBot provides some info."        
     elif intent == "product / menu details":
-        memory.memories[-1].buffer += " The customer asks information about a ZUS product, and ZUSBot provides some info."
+        add_string = " The customer asks information about a ZUS product or menu, and ZUSBot provides some info."
     elif intent == "birthday / vouchers":
-        memory.memories[-1].buffer += " The customer asks information about vouchers or a birthday voucher, and ZUSBot provides some info."
+        add_string = " The customer asks information about vouchers or a birthday voucher, and ZUSBot provides some info."
     elif intent == "outlet details":
-        memory.memories[-1].buffer += " The customer asks information about outlet details, and ZUSBot provides some info."
+        add_string = " The customer asks information about outlet details, and ZUSBot provides some info."
     # add more rules here, remember the 1 space before the injected summary fraction
     
-    summary_value = memory.memories[-1].buffer
+    # manage the vecdb summary memory
+    if add_string.lower() not in memory.memories[-1].buffer.lower():
+        memory.memories[-1].buffer += add_string
+
+    summary_value = memory.memories[-1].buffer    
+    print("summary: ", summary_value)
 
     # upload memory to AWS S3        
     write_memory(memory, pickled_memory_file)

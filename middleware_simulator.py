@@ -75,7 +75,7 @@ while True: # the following lines are all in the while loop
             if eot_flag == 1: # this is particular to handle situation when user just exit a topic
                 output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
                 eot_flag = 0 # new
-                print(output)
+                print(output)                
             else:
                 break 
                 # break out of the while loop that relies on AI
@@ -85,7 +85,7 @@ while True: # the following lines are all in the while loop
 
     else:
         output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
-        print(output)
+        print(output)        
         option_done_flag = 0
 
 # do whatever live agent stuff here (job for middleware)
