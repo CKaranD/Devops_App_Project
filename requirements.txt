@@ -12,6 +12,6 @@ boto3
 matplotlib
 plotly
 scipy
-# google-api-python-client
+# google-api-python-client # only needed for with tools
 pycld3
-requests
+# requests # only needed for lambda_system_msg
