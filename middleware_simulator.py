@@ -3,6 +3,7 @@ from lambda_conversation_bot_local import lambda_conversation_bot
 from lambda_conversation_bot_vecdb_local import lambda_conversation_bot_vecdb
 from lambda_action_option_local import lambda_action_option
 from lambda_end_of_topic_local import lambda_end_of_topic
+from lambda_system_msg_local import lambda_system_msg
 
 # imagine that the middleware is running as a while loop
 
@@ -44,11 +45,16 @@ while True: # the following lines are all in the while loop
         # for intents that require zus backend
         if intent == "slow delivery service" or intent == "OOS" or intent == "delivery info / status": 
             # order_id = input("May I have your order number please? \n") # middleware to do this
-            # with order ID, get status from zus backend(middleware does this), return status
-            # may need a mechanism to chekc if order ID is correct
+            sys_msg = "Please enter your order number of the transaction in the correct format. (eg: AB1122334455)"
+            translated_sys_msg, summary_value = lambda_system_msg(pickled_memory_file, user_input, sys_msg)
+            print("summary_value: ", summary_value)
+            print("translated_sys_msg: ", translated_sys_msg)
+            
             status = 1 # for debug, we set a value, standardize to use integer
             output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
-            print(output)
+            print("ZUSBot: ",output)
+            print("chat_summary: ", chat_summary)
+            
             option_flag = 1
 
         # how about intents that have a chain of options

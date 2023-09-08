@@ -21,5 +21,5 @@ if not (os.path.exists('chroma-collections.parquet') and os.path.exists('chroma-
     vectordb = Chroma.from_documents(
         documents=docs, 
         embedding=OpenAIEmbeddings(openai_api_key=openai_api_key), 
-        persist_directory='db/loyalty_benefits')
+        persist_directory='db/birthday_vouchers')
     vectordb.persist()

@@ -14,3 +14,4 @@ plotly
 scipy
 # google-api-python-client
 pycld3
+requests

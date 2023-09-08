@@ -1,4 +1,4 @@
-import os
+# import os
 from end_of_topic_detector import EOT_checker
 
 def lambda_end_of_topic(customer_input, eot_flag, vecdb_flag):
