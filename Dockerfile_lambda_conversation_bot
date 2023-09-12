@@ -1,0 +1,26 @@
+FROM public.ecr.aws/lambda/python:3.8
+
+# lambda_conversation_bot.py
+
+COPY requirements.txt  .
+RUN pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+
+# Copy function code
+COPY lambda_conversation_bot.py ${LAMBDA_TASK_ROOT}
+COPY zusbot_main_no_tools.py ${LAMBDA_TASK_ROOT}
+COPY detect_language.py ${LAMBDA_TASK_ROOT}
+COPY get_openai_key.py ${LAMBDA_TASK_ROOT}
+COPY zus_write_load_mem.py ${LAMBDA_TASK_ROOT}
+COPY template_main_v4.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_slow_delivery_service.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_oos.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_delivery_info_status.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_career.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_pickup_info_status.py ${LAMBDA_TASK_ROOT}
+
+# Copy API keys from folders
+COPY AWS_S3_KEY/AWS_S3_KEY.txt ${LAMBDA_TASK_ROOT}
+COPY OPENAI_API_KEY/OPENAI_API_KEY_MINDHIVE.txt ${LAMBDA_TASK_ROOT}
+
+# Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
+CMD [ "lambda_conversation_bot.lambda_conversation_bot" ]

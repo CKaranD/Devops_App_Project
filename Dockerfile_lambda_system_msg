@@ -1,0 +1,21 @@
+FROM public.ecr.aws/lambda/python:3.8
+
+# lambda_system_msg.py
+
+COPY requirements.txt  .
+RUN pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+
+# Copy function code
+COPY lambda_system_msg.py ${LAMBDA_TASK_ROOT}
+COPY chat_memory_manager.py ${LAMBDA_TASK_ROOT}
+COPY zus_write_load_mem.py ${LAMBDA_TASK_ROOT}
+COPY get_openai_key.py ${LAMBDA_TASK_ROOT}
+COPY system_messenger.py ${LAMBDA_TASK_ROOT}
+COPY detect_language.py ${LAMBDA_TASK_ROOT}
+
+# Copy API keys from folders
+COPY AWS_S3_KEY/AWS_S3_KEY.txt ${LAMBDA_TASK_ROOT}
+COPY OPENAI_API_KEY/OPENAI_API_KEY_MINDHIVE.txt ${LAMBDA_TASK_ROOT}
+
+# Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
+CMD [ "lambda_system_msg.lambda_system_msg" ]
