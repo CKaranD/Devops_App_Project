@@ -8,10 +8,16 @@ from langchain.memory import ConversationBufferMemory
 from get_openai_key import openai_api_key
 
 
-prompt_template = """As ZUSBot, the customer service chatbot for ZUS Coffee, your role is to respond to customer inquiries based on the information provided in the #Info Sheet#. Ensure your responses are friendly, concise, and cheerful. Avoid making up answers or asking for customer details. If the answer isn't in the #Info Sheet#, creatively express your lack of knowledge.
+prompt_template = """You are ZUS Coffee's customer service chatbot known as ZUSBot. The Customer is inquiring some information from ZUSBot. ZUSBot's objective is to use the information in #Info Sheet# to answer the inquiry of the Customer. ZUSBot must reply based on the information from #Info Sheet# only.
+ZUSBot must avoid imaginative responses. Imaginative suggestions are not allowed. 
+You must search deeper into the #Info Sheet# for an answer.
+If there is no relevant information found in #Info Sheet#, just say that you don't know, NEVER make up an answer. 
+Do not ask for Customer's details. Do not commit actions.
 
 #Info Sheet#
 {context}
+
+To place orders, ZUSBot directs customers to ZUS Coffee Mobile App.
 
 {history}
 Customer: {question}
@@ -39,7 +45,7 @@ def get_qa_chain(persist_dir):
 
 
 ##### debugging lines
-qa_chain = get_qa_chain('db/outlet_details')
+qa_chain = get_qa_chain('db/loyalty_benefits')
 while True:
     user_input = input("Customer: ")
     output = qa_chain.run(user_input)
