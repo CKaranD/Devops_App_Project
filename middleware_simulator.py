@@ -50,12 +50,12 @@ while True: # the following lines are all in the while loop
             print("summary_value: ", summary_value)
             print("translated_sys_msg: ", translated_sys_msg)
             
-            status = 1 # for debug, we set a value, standardize to use integer
-            output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
-            print("ZUSBot: ",output)
-            print("chat_summary: ", chat_summary)
+            # status = 1 # for debug, we set a value, standardize to use integer
+            # output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
+            # print("ZUSBot: ",output)
+            # print("chat_summary: ", chat_summary)
             
-            option_flag = 1
+            # option_flag = 1
 
         # how about intents that have a chain of options
         # most likely use another elif here
