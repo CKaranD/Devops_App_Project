@@ -13,12 +13,12 @@ RUN yum install -y python3-devel
 # Install essential build tools
 RUN yum groupinstall -y "Development Tools"
 
-# Clone the repository and install the Python package
-RUN git clone https://github.com/nmslib/hnswlib.git /hnswlib && \
-    cd /hnswlib && \
-    pip install .
+# # Clone the repository and install the Python package
+# RUN git clone https://github.com/nmslib/hnswlib.git /hnswlib && \
+#     cd /hnswlib && \
+#     pip install .
 # ================== END OF hnswlib ===================================
-
+RUN pip install annoy
 
 # Set the working directory (mostly not needed)
 # WORKDIR /hnswlib
@@ -31,7 +31,7 @@ COPY lambda_conversation_bot_vecdb.py ${LAMBDA_TASK_ROOT}
 COPY zusbot_main_no_tools.py ${LAMBDA_TASK_ROOT}
 COPY detect_language.py ${LAMBDA_TASK_ROOT}
 COPY get_openai_key.py ${LAMBDA_TASK_ROOT}
-COPY query_chromadb.py ${LAMBDA_TASK_ROOT}
+COPY query_annoydb_memory.py ${LAMBDA_TASK_ROOT}
 COPY zus_write_load_mem.py ${LAMBDA_TASK_ROOT}
 COPY template_main_v4.py ${LAMBDA_TASK_ROOT}
 

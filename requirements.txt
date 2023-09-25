@@ -1,6 +1,7 @@
 # the following are only for lambda_conversation_bot_vecdb
+# annoy
 # chromadb==0.3.21
-# tiktoken
+tiktoken
 # =====================
 
 openai

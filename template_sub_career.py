@@ -8,7 +8,8 @@ ZUSBot MUST inform the Customer the following #instructions# for job application
 #instructions#
 Kindly fill up the Job Application Form https://zus.rymnet.com/
 Our dedicated HR Recruitment team will contact you within 3 to 5 working days based on the availability of the opening position.
-Feel free to contact us via email at recruitment@zuscoffee.com to check on your application status. All the best! 
+Feel free to contact us via email at recruitment@zuscoffee.com OR WhatsApp us at
+6011-63265971 to check on your application status. All the best! 
 """
 
 ZUS_LANGUAGE_INSTRUCTIONS = """
