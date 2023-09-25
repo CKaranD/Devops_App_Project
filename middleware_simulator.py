@@ -14,6 +14,10 @@ eot_flag = 0
 option_flag = 0
 option_done_flag = 0
 
+# query memory handling
+query_mem_flag = 0
+query_memory_file = "query_memory_file.pickle"
+
 # define chat memory pickle file name
 pickled_memory_file = "my_local_test.pickle"
 
@@ -67,7 +71,7 @@ while True: # the following lines are all in the while loop
                 eot_flag = 0 # new
                 print(output)
             else:
-                output, chat_summary, mem_flag, vecdb_flag, eot_flag = lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, user_input, intent)        
+                output, chat_summary, mem_flag, vecdb_flag, eot_flag, query_mem_flag = lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, query_mem_flag, query_memory_file, user_input, intent)        
                 print(output)
                 
         elif intent == "zus career":
