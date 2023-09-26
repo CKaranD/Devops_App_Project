@@ -2,7 +2,7 @@ FROM public.ecr.aws/lambda/python:3.8
 
 # lambda_conversation_bot_vecdb.py
 
-# ================== Do this section only if having trouble with hnswlib
+# ================== Do this section only if having trouble with hnswlib / annoy
 RUN yum update -y && \
     yum install -y python-setuptools python-pip git && \    
     yum clean all
@@ -13,12 +13,16 @@ RUN yum install -y python3-devel
 # Install essential build tools
 RUN yum groupinstall -y "Development Tools"
 
+#### ==== use the following for hnsw ==================================
 # # Clone the repository and install the Python package
 # RUN git clone https://github.com/nmslib/hnswlib.git /hnswlib && \
 #     cd /hnswlib && \
 #     pip install .
 # ================== END OF hnswlib ===================================
+
+#### ==== use the following for annoy ==================================
 RUN pip install annoy
+# ================== END OF annoy ===================================
 
 # Set the working directory (mostly not needed)
 # WORKDIR /hnswlib

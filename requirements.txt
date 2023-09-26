@@ -1,6 +1,5 @@
 # the following are only for lambda_conversation_bot_vecdb
-# annoy
-# chromadb==0.3.21
+# chromadb==0.3.21 # uncomment this if use chromadb
 tiktoken
 # =====================
 
@@ -15,4 +14,6 @@ plotly
 scipy
 # google-api-python-client # only needed for with tools
 pycld3
-# requests # only needed for lambda_system_msg
+
+# the following is only needed for lambda_system_msg
+# requests 
