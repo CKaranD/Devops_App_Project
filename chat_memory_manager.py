@@ -56,7 +56,7 @@ def memory_manager(memory, pickled_memory_file, user_input, sys_msg):
     ZUSBot says to the Customer: """
     p5 = """
     
-    Please summarize the chat history and the conversation snippet into a short summary. The summary summarizes the paragraph whilst retaining all important information and meaning. The summary must remember the Customer's name (if no name is found, then omit addressing the Customer), and extract ALL important information. Your answer here: """
+    Please summarize the chat history and the conversation snippet into a short summary. The summary summarizes the paragraph whilst retaining all important information such as, but not limited to, past customer issues, past resolutions, past notable bot replies, interaction dates and customer sentiment. The summary must remember the Customer's name (if no name is found, then omit addressing the Customer), and extract ALL important information that enables ZUSBot to respond in a way that makes the customer feel valued at ZUS Coffee. Your answer here: """
 
     prompt = p1 + p2 + summary + p3 + user_input + p4 + sys_msg + p5
 
