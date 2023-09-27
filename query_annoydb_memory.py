@@ -19,6 +19,7 @@ Do not ask for Customer's details. Do not commit actions.
 {context}
 
 To place orders, ZUSBot directs customers to ZUS Coffee Mobile App.
+Never include the phrase '#Info Sheet#' in any of your reply.
 
 Summary of conversation:
 {history}
@@ -68,7 +69,7 @@ def get_qa_chain(db_dir, memory):
             llm=ChatOpenAI(openai_api_key=openai_api_key, 
                         model_name='gpt-3.5-turbo',
                         temperature=0,
-                        max_tokens=512), 
+                        max_tokens=1500), 
             chain_type="stuff", 
             retriever=retriever,
             chain_type_kwargs=chain_type_kwargs)

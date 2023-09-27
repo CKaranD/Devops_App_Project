@@ -24,7 +24,7 @@ pickled_memory_file = "my_local_test.pickle"
 while True: # the following lines are all in the while loop
     # here is the only entry point of user's input, except when asking for order number
     if mem_flag == 0:
-        user_input = input("Welcome to ZUS. I am here to help. Can I start by getting your name?\n")  
+        user_input = input("Welcome to ZUS. I am here to help.\n") # Can I start by getting your name?\n")  
     else:
         user_input = input("user input: ")
         # detect if end of topic, then set flag, 
