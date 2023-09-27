@@ -78,7 +78,7 @@ def get_qa_chain(db_dir, memory):
 
 ##### debugging lines
 # memory = create_query_memory()
-# qa_chain, memory = get_qa_chain('db_annoy/loyalty_benefits', memory)
+# qa_chain, memory = get_qa_chain('db/loyalty_benefits', memory)
 # while True:
 #     user_input = input("Customer: ")
 #     output = qa_chain.run(user_input)

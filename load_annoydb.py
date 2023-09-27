@@ -18,4 +18,4 @@ vectordb = Annoy.from_documents(
     documents=docs, 
     embedding=OpenAIEmbeddings(openai_api_key=openai_api_key))
 
-vectordb.save_local("db_annoy/products_menu")
+vectordb.save_local("db/products_menu")
