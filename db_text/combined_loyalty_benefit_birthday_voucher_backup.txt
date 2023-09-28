@@ -1,14 +1,102 @@
-Q:How many ZUS Member Loyalty Levels/Tiers are there?
-Q:What is the minimum spend required for free delivery for ZUS Easy Goer Members, ZUS Rising Star Members, Q:ZUS Super Addict members, and ZUS Elite Members?
-Q:What are the unique benefits that ZUS Elite Members receive that are not available to other levels?
-Q:How many ZUS Points do the various ZUS membership levels earn per RM1 spent?
-Q:What birthday benefit is common across all ZUS member/tiers?
-Q:What are the zus member tiers?
-A:There are 4 different Zus Member Tiers, they are "Easy Goer", "Rising Star", "Super Addict" and "ZUS Elite". ZUS member benefits are as below:
-As a ZUS "Easy Goer" Member, the benefits are Freebies Enjoy 1 x Buy 1 Free 1 Voucher with every 10x cups purchased (Not applicable for purchases with discount vouchers) RM30 Free Delivery Free delivery when you spend RM30 and above Birthday Treats Buy 1 Free 1 slice of cake on your special day ZUS Points Earn 1x ZUS Point for every RM1 spent *Total order amount excluding SST charges and after deduction of any vouchers. *Order(s) applied with discount voucher are not eligible for cup count collection for a complimentary drink and membership level upgrade. 
-As a ZUS "Rising Star" Member, the benefits are Freebies Enjoy 1x complimentary drink with every 9x cups purchased (Not applicable for purchases with discount vouchers) RM27* Free Delivery Free delivery when you spend RM27 and above Birthday Treats Buy 1 Free 1 slice of cake on your special day ZUS Points Earn 1.5x ZUS Point for every RM1 spent *Total order amount excluding SST charges and after deduction of any vouchers. *Order(s) applied with discount voucher are not eligible for cup count collection for a complimentary drink and membership level upgrade. 
-As a ZUS "Super Addict" member, the benefits are Freebies Enjoy 1x complimentary drink with every 8x cups purchased (Not applicable for purchases with discount vouchers) RM25* Free Delivery Free delivery when you spend RM25 and above Birthday Treats Buy 1 Free 1 slice of cake on your special day ZUS Points Earn 2x ZUS Point for every RM1 spent VIP Access Exclusive invitations to Grand Launch events *Total order amount excluding SST charges and after deduction of any vouchers. *Order(s) applied with discount voucher are not eligible for cup count collection for a complimentary drink and membership level upgrade. 
-As a ZUS "Elite" Member, the benefits are Freebies Enjoy 1x complimentary drink with every 8x cups purchased (Not applicable for purchases with discount vouchers) RM25* Free Delivery Free delivery when you spend RM25 and above Birthday Treats 2x Birthday vouchers for your big day! 1. Buy 1 Free 1 slice of cake 2. Free Hot Meal with purchase of any 1x handcrafted drink ZUS Points Earn 3x ZUS Point for every RM1 spent VIP Access Exclusive invitations to Grand Launch events Monthly Exclusive Deals Enjoy 2x Discount Vouchers and Free Delivery on 1x Delivery Order every month. *Total order amount excluding SST charges and after deduction of any vouchers. *Order(s) applied with discount voucher are not eligible for cup count collection for a complimentary drink and membership level upgrade.
+Q: How many ZUS Member Loyalty Levels/Tiers are there?
+Q: Can you list down the ZUS membership tiers?
+Q: What are the different ZUS member tiers?
+Q: How about zus membership?
+A: There are 4 different ZUS Member Tiers. They are "Easy Goer", "Rising Star", "Super Addict", and "ZUS Elite".
+
+Q: What are the zus benefits?
+A: With each purchase via ZUS App, collect points that you can use to redeem exciting rewards such as free drinks and limited time only vouchers.
+
+Q: What is the minimum spend required for free delivery for ZUS Easy Goer Members?
+A: For ZUS Easy Goer Members, the minimum spend required for free delivery is RM30.
+
+Q: What is the minimum spend required for free delivery for ZUS Rising Star Members?
+A: For ZUS Rising Star Members, the minimum spend required for free delivery is RM27.
+
+Q: What is the minimum spend required for free delivery for ZUS Super Addict members?
+A: For ZUS Super Addict members, the minimum spend required for free delivery is RM25.
+
+Q: What is the minimum spend required for free delivery for ZUS Elite Members?
+A: For ZUS Elite Members, the minimum spend required for free delivery is RM25.
+
+Q: What are the unique benefits that ZUS Elite Members receive that are not available to other levels?
+Q: What special benefits do ZUS Elite Members have?
+A: ZUS Elite Members receive these unique benefits:
+   - 2x Birthday vouchers, which include:
+      1. Buy 1 Free 1 slice of cake 
+      2. Free Hot Meal with the purchase of any 1x handcrafted drink.
+   - Monthly Exclusive Deals: 2x Discount Vouchers and Free Delivery on 1x Delivery Order every month.
+
+Q: How many ZUS Points do ZUS Easy Goer Members earn per RM1 spent?
+A: ZUS Easy Goer Members earn 1x ZUS Point for every RM1 spent.
+
+Q: How many ZUS Points do ZUS Rising Star Members earn per RM1 spent?
+A: ZUS Rising Star Members earn 1.5x ZUS Point for every RM1 spent.
+
+Q: How many ZUS Points do ZUS Super Addict Members earn per RM1 spent?
+A: ZUS Super Addict Members earn 2x ZUS Point for every RM1 spent.
+
+Q: How many ZUS Points do ZUS Elite Members earn per RM1 spent?
+A: ZUS Elite Members earn 3x ZUS Point for every RM1 spent.
+
+Q: What birthday benefit do all ZUS members receive?
+Q: What's the common birthday benefit for all ZUS members?
+A: All ZUS members/tiers, except for Elite Members, receive a Buy 1 Free 1 slice of cake on their birthday. Elite Members receive 2x Birthday vouchers, including a Buy 1 Free 1 slice of cake and a Free Hot Meal with the purchase of any 1x handcrafted drink.
+
+Q: What are the benefits offered to ZUS members?
+Q: Can you provide an overview of the benefits for each ZUS membership tier?
+A: Each ZUS Member tier has its unique benefits:
+- Easy Goer:
+   - Freebies: 1 x Buy 1 Free 1 Voucher for every 10x cups purchased (exceptions apply)
+   - RM30 min spend for Free Delivery 
+   - Birthday Treat: Buy 1 Free 1 slice of cake 
+   - 1x ZUS Point for every RM1 spent (terms apply)
+
+- Rising Star:
+   - Freebies: 1x complimentary drink for every 9x cups purchased (exceptions apply)
+   - RM27 min spend for Free Delivery
+   - Birthday Treat: Buy 1 Free 1 slice of cake
+   - 1.5x ZUS Point for every RM1 spent (terms apply)
+
+- Super Addict:
+   - Freebies: 1x complimentary drink for every 8x cups purchased (exceptions apply)
+   - RM25 min spend for Free Delivery 
+   - Birthday Treat: Buy 1 Free 1 slice of cake
+   - 2x ZUS Point for every RM1 spent
+   - VIP Access to Grand Launch events (terms apply)
+
+- ZUS Elite:
+   - Freebies: 1x complimentary drink for every 8x cups purchased (exceptions apply)
+   - RM25 min spend for Free Delivery 
+   - 2x Birthday vouchers
+   - 3x ZUS Point for every RM1 spent
+   - VIP Access to Grand Launch events
+   - Monthly Exclusive Deals: 2x Discount Vouchers and 1x Free Delivery Order (terms apply)
+
+Q: Are orders with discount vouchers counted towards the complimentary drink cup collection?
+A: No, order(s) applied with a discount voucher are not eligible for cup count collection for a complimentary drink.
+
+Q: Can I use a discount voucher and still earn cups towards a free drink?
+A: No, when you use a discount voucher on your order, it doesn't count towards the cups needed for a complimentary drink.
+
+Q: If I apply a discount voucher to my order, will it affect my eligibility for membership level upgrades?
+A: Yes, order(s) using discount vouchers are not considered for membership level upgrades.
+
+Q: Do discount vouchers impact my progress towards complimentary drinks and membership tier progression?
+A: Yes, orders with discount vouchers won't help you progress towards complimentary drinks or moving up the membership tiers.
+
+Q: What happens to my cup count collection if I use a discount voucher on my order?
+A: Your order won't contribute to your cup count collection for complimentary drinks if a discount voucher is applied.
+
+Q: Are there any restrictions related to orders made using discount vouchers in terms of membership benefits?
+A: Yes, orders with discount vouchers are not eligible for cup count collection for complimentary drinks and they also do not count towards membership level upgrades.
+
+Q: Will using a discount voucher exclude my order from membership level upgrade eligibility?
+A: Yes, when you use a discount voucher, that particular order won't be eligible for membership level upgrades.
+
+Q: Can I earn a complimentary drink or advance in membership level if I frequently use discount vouchers on my orders?
+A: No, orders made with discount vouchers will not count towards earning a complimentary drink or advancing in membership levels.
+
 
 Q:When will you receive the Buy 1 Free 1 Cake voucher on your birthday?
 Q:What is the minimum purchase required to use the free slice of cake voucher?
@@ -27,22 +115,19 @@ Happy fabulous Birthday! 🎉
 All ZUS members/tiers enjoy the Buy 1 Free 1 Cake voucher for their birthday.
 With apologies, there are no free drinks or other products for the Buy 1 Free 1 birthday deal.
 
+Cakes are eligible for both dine in and delivery orders.
+
 
 Loyalty FAQ
 Q: How can I join the ZUS Coffee Club and access ZUS Balance?
 Q: How do I become a member of ZUS Coffee Club?
-Q: What's the first step to use ZUS Balance after downloading the ZUS App?
+Q: What's the first step to use ZUS Balance?
 A: Simply create an account via our ZUS App and you will automatically become a ZUS Coffee Club member. From here, you can top up your ZUS Balance seamlessly.
 
 Q: What functionalities does the ZUS App offer in terms of payment and rewards?
 Q: How do I earn ZUS Points, and what can I use them for?
 Q: Can you explain the different features of the ZUS App, like ZUS Balance, ZUS Points, ZUS Rewards, and ZUS Mission?
 A: ZUS Balance - A feature only on ZUS App that allows you to load a monetary value onto your account for quicker checkout. ZUS Points - Points you can earn with every purchase via ZUS App. ZUS Rewards - Exclusive perks treats for ZUSsies that can be redeemed with ZUS Points. ZUS Mission - A simple task you can complete via ZUS App in order to earn ZUS Points. I've started the Mission but didn't get any points from my purchase. Missions must be started before your order is completed.
-
-Q: How do I increase my membership level on the ZUS App?
-Q: What determines my membership ranking in the ZUS App?
-Q: How can I move up from the Easy Goer and Rising Star membership levels?
-A: Keep drinking more ZUS! The more cups you purchase over time, the higher your membership ranking on ZUS App.
 
 Q: How can I accumulate more cups to get a free drink?
 Q: Are there any exclusions when trying to earn cup counts for complimentary drinks?
@@ -80,15 +165,39 @@ Q: Is my ZUS Balance transaction data kept private?
 Q: Can ZUS Coffee share my credits and transaction details without my permission?
 A: All customer information in regards to ZUS Balance, including but not limited to credits and transaction details, will not be shared without your permission.
 
-Q: Is it possible for my coffee club membership level to be downgraded?
-Q: How do I maintain my current ZUS membership level?
-Q: What happens if I don't buy enough coffee during a Reward Period?
-A: Yes. Your membership level risks getting downgraded when you do not collect enough coffee cups from your transactions. For example: If you do not collect enough coffee cups during Reward Period 1 (1 Jan - 31 March) to maintain your current membership level, you will lose your current membership title and the privileges that come with it during Reward Period 2.
+Q:What is the difference between ZUS Balance and ZUS Points, ZUS Rewards and ZUS Mission?
+A:ZUS Balance - A feature only on ZUS App that allows you to load a monetary value onto your account for quicker checkout.
+ZUS Points - Points you can earn with every purchase via ZUS App.
+ZUS Rewards - Exclusive perks & treats for ZUSsies that can be redeemed with ZUS Points.
+ZUS Mission - A simple task you can complete via ZUS App in order to earn ZUS Points.
 
+Q:I’ve started the Mission but didn’t get any points from my purchase. 
+A:Missions must be started before your order is completed. 
+ 
+Q:How can I upgrade my membership from Easy Goer and Rising Star?
+Q:How can i level up my membership from Rising Star to Super Addict?
+Q:How can i level up my membership from Super Addict to ZUS Elite?
+Q: How do I increase my membership tier on the ZUS App?
+Q: How do I increase my membership level on the ZUS App?
+Q: What determines my membership ranking in the ZUS App?
+Q: How can I move up from the Easy Goer and Rising Star membership levels?
 Q: Where can I find the number of cups required to maintain or advance my membership level?
 Q: How many cups are needed for each membership level during a Reward Period?
 Q: Is there a way to check how many cups I need for the next membership level?
-A: You can refer to our ZUS App for the number of cups you need to collect to maintain or upgrade your membership level. Just click on your membership level title (Easy Goer, Rising Star, Super Addict, ZUS Elite) on the Home page. Bear in mind that each Reward Period will restart the cup count from 0.
+A:Keep drinking more ZUS! The more cups you purchase over time, the higher your membership ranking on ZUS App.
+Drink 10 cups: You'll upgrade to the Rising Star.
+Drink an additional 9 cups: Elevate your status from Rising Star to Super Addict.
+Drink another 8 cups: Achieve the highest membership level, ZUS Elite.
+
+Only applicable to handcrafted drinks at full price. Order(s) applied with discount vouchers are not eligible for membership level upgrades. You will not lose your cup count if in the event your account is downgraded.
+
+Q:How can I earn more cups to redeem a complimentary drink?
+A:You can earn more cup counts by ordering any handcrafted drink at full price. Discounted Price Items and Discount vouchers used are not applicable for cup counts for complimentary drinks.
+
+Q: Is it possible for my coffee club membership level to be downgraded?
+Q: How do I maintain my current ZUS membership level?
+Q: What happens if I don't buy enough coffee during a Reward Period?
+A: Yes. Your membership level risks getting downgraded when you do not collect enough coffee cups from your transactions. For example: If you do not collect enough coffee cups during Reward Period 1 (1 Jan - 31 March) to maintain your current membership level, you will lose your current membership title and the privileges that come with it during Reward Period 2. You will not lose your cup count if in the event your account is downgraded.
 
 Q: If my membership level decreases, do I lose my collected cup counts?
 Q: What happens to my earned cup counts if my membership gets downgraded?

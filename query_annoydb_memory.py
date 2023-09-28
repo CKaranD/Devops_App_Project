@@ -67,7 +67,7 @@ def get_qa_chain(db_dir, memory):
 
     ans = RetrievalQA.from_chain_type(
             llm=ChatOpenAI(openai_api_key=openai_api_key, 
-                        model_name='gpt-3.5-turbo',
+                        model_name='gpt-4',
                         temperature=0,
                         max_tokens=1500), 
             chain_type="stuff", 
