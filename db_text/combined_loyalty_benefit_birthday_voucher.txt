@@ -1,43 +1,22 @@
 Q: What are the benefits offered to ZUS members?/Can you provide an overview of the benefits for each ZUS membership tier?/How many ZUS Member Loyalty Levels/Tiers are there?/Can you list down the ZUS membership tiers?/What are the different ZUS member tiers?/How about zus membership?
 A: ZUS offers a unique loyalty program with four distinct membership tiers to reward its customers, namely: Easy Goer, Rising Star, Super Addict, and ZUS Elite. All these tiers share common features such as offering freebies based on the number of cups purchased, having a specified minimum spend for availing free delivery, giving out ZUS points on purchases, and celebrating members with birthday benefits. Delving into specifics, the Easy Goer tier offers a buy-one-get-one-free voucher for every 10 cups purchased, has a RM30 minimum spend for free delivery, a birthday treat of a buy-one-get-one-free slice of cake, and an earning rate of 1x ZUS Point for every RM1 spent. Rising Star members receive a complimentary drink for every 9 cups, need to spend at least RM27 for free delivery, enjoy the same birthday cake offer, and accumulate points at 1.5 times the regular rate. Super Addict members benefit with a complimentary drink for every 8 cups, a RM25 threshold for free delivery, the cake offer, 2x points earning rate, and exclusive VIP access to grand launch events. ZUS Elite members, receive a complimentary drink for every 8 cups, the RM25 free delivery threshold, 2 special birthday vouchers, a whopping 3x points multiplier, VIP event access, and additional monthly deals including discount vouchers and a free delivery order. It's essential to note that certain terms may apply to some benefits.
 
+Q: Are there any other ZUS member tier besides Easy Goer, Rising Star, Super Addict, and ZUS Elite?/ZUS 1337 leh? got this tier ah?
+A: ZUS offers a unique loyalty program with four distinct membership tiers to reward its customers, namely: Easy Goer, Rising Star, Super Addict, and ZUS Elite. There are no other memberships besides the ones listed above.
+
 Q: What are the zus benefits?
 A: With each purchase via ZUS App, collect points that you can use to redeem exciting rewards such as free drinks and limited time only vouchers.
 
-Q: What is the minimum spend required for free delivery for ZUS Easy Goer Members?
-A: For ZUS Easy Goer Members, the minimum spend required for free delivery is RM30.
-
-Q: What is the minimum spend required for free delivery for ZUS Rising Star Members?
-A: For ZUS Rising Star Members, the minimum spend required for free delivery is RM27.
-
-Q: What is the minimum spend required for free delivery for ZUS Super Addict members?
-A: For ZUS Super Addict members, the minimum spend required for free delivery is RM25.
-
-Q: What is the minimum spend required for free delivery for ZUS Elite Members?
-A: For ZUS Elite Members, the minimum spend required for free delivery is RM25.
-
-Q: How many ZUS Points do ZUS Easy Goer Members earn per RM1 spent?
-A: ZUS Easy Goer Members earn 1x ZUS Point for every RM1 spent.
-
-Q: How many ZUS Points do ZUS Rising Star Members earn per RM1 spent?
-A: ZUS Rising Star Members earn 1.5x ZUS Point for every RM1 spent.
-
-Q: How many ZUS Points do ZUS Super Addict Members earn per RM1 spent?
-A: ZUS Super Addict Members earn 2x ZUS Point for every RM1 spent.
-
-Q: How many ZUS Points do ZUS Elite Members earn per RM1 spent?
-A: ZUS Elite Members earn 3x ZUS Point for every RM1 spent.
-
-Q: What are the benefits of an Easy Goer membership?/What advantages do members of Easy Goer enjoy?/How do individuals benefit from joining the Easy Goer program?/What perks are associated with an Easy Goer membership?
+Q: What are the benefits of an Easy Goer membership?/What advantages do members of Easy Goer enjoy?/How do individuals benefit from joining the Easy Goer program?/What perks are associated with an Easy Goer membership?/Tell me more about the Easy Goer member tier
 A: Easy Goer tier offers a buy-one-get-one-free voucher for every 10 cups purchased, has a RM30 minimum spend for free delivery, a birthday treat of a buy-one-get-one-free slice of cake, and an earning rate of 1x ZUS Point for every RM1 spent.
 
-Q: What are the benefits of a Rising Star membership?/What advantages do members of Rising Star enjoy?/How do individuals benefit from joining the Rising Star program?, What perks are associated with a Rising Star membership?
+Q: What are the benefits of a Rising Star membership?/What advantages do members of Rising Star enjoy?/How do individuals benefit from joining the Rising Star program?, What perks are associated with a Rising Star membership?/Tell me more about the Rising Star member tier
 A: Rising Star members receive a complimentary drink for every 9 cups, need to spend at least RM27 for free delivery, enjoy the same birthday cake offer, and accumulate points at 1.5 times the regular rate.
 
-Q: What are the benefits of a Super Addict membership?/What advantages do members of Super Addict enjoy?/How do individuals benefit from joining the Super Addict program?/What perks are associated with a Super Addict membership?
+Q: What are the benefits of a Super Addict membership?/What advantages do members of Super Addict enjoy?/How do individuals benefit from joining the Super Addict program?/What perks are associated with a Super Addict membership?/Tell me more about the Super Addict member tier
 A: Super Addict members benefit with a complimentary drink for every 8 cups, a RM25 threshold for free delivery, the cake offer, 2x points earning rate, and exclusive VIP access to grand launch events.
 
-Q: What are the benefits of a ZUS Elite membership?/What advantages do members of ZUS Elite enjoy?/How do individuals benefit from joining the ZUS Elite program?/What perks are associated with a ZUS Elite membership?
+Q: What are the benefits of a ZUS Elite membership?/What advantages do members of ZUS Elite enjoy?/How do individuals benefit from joining the ZUS Elite program?/What perks are associated with a ZUS Elite membership?/Tell me more about the ZUS Elite member tier
 A: ZUS Elite, the premium tier, provides its members with a complimentary drink for every 8 cups, the RM25 free delivery threshold, 2 special birthday vouchers, a whopping 3x points multiplier, VIP event access, and additional monthly deals including discount vouchers and a free delivery order. It's essential to note that certain terms may apply to some benefits.
 
 Q: Are orders with discount vouchers counted towards the complimentary drink cup collection?
@@ -67,7 +46,7 @@ A: No, orders made with discount vouchers will not count towards earning a compl
 Q: What birthday benefit do all ZUS members receive?/What's the common birthday benefit for all ZUS members?
 A: All ZUS members/tiers, except for Elite Members, receive a Buy 1 Free 1 slice of cake on their birthday. Elite Members receive 2x Birthday vouchers, including a Buy 1 Free 1 slice of cake and a Free Hot Meal with the purchase of any 1x handcrafted drink.
 
-Q:When will you receive the Buy 1 Free 1 Cake voucher on your birthday?/What is the minimum purchase required to use the free slice of cake voucher?/How many slices of cake should you add to your cart to redeem the Birthday cake voucher?/How do you ensure that you get the free slice when redeeming the voucher?/What should you do if you need more information or face difficulties while using the voucher?/How can i redeem my B1F1 Birthday deal?
+Q:Any birthday deals for zus members?/It's my birthday, what's my treat?/What promotions are available for birthdays?/When will you receive the Buy 1 Free 1 Cake voucher on your birthday?/What is the minimum purchase required to use the free slice of cake voucher?/How many slices of cake should you add to your cart to redeem the Birthday cake voucher?/How do you ensure that you get the free slice when redeeming the voucher?/What should you do if you need more information or face difficulties while using the voucher?/How can i redeem my B1F1 Birthday deal?
 A:ZUS Birthday deal/voucher/offer:
 On your birthday at 12 am, you will receive a Buy 1 Free 1 Cake voucher. The minimum purchase to enjoy the free slice cake voucher is just 1 slice of cake.
 How to redeem as below:
@@ -173,7 +152,7 @@ A: Our BUY 1 FREE 1 voucher is reserved for welcoming our first-time ZUS App use
 Q: When will the birthday cake voucher be added to my account?/How many slices do I need to add to my cart to use the birthday cake voucher?/How long is my birthday cake voucher valid after it's been added to my account?/how do i get birthday deals/Where can i redeem my birthday voucher?
 A: A birthday cake voucher will be automatically added to your account on your birthday. Don’t forget to redeem it within 30 days from your birth date! To use this voucher, simply select any cake of your choice with a min. of two (2) slices of cake added to the cart. Via the ZUS Coffee Mobile app, select your birthday voucher at checkout. Have a Happy Birthday, ZUSsie!
 
-Q: What promotions are available for birthdays?/Are there any free drinks provided for birthday celebrations?/Besides the birthday cake voucher, are there any other complimentary products given for birthdays?
+Q: Are there any free drinks provided for birthday celebrations?/Besides the birthday cake voucher, are there any other complimentary products given for birthdays?/It's my birthday, got free drinks ah?
 A: As a ZUS member, There are no free drinks or other products besides the birthday cake voucher.
 
 Q: What if I realized I didn't use my voucher after I've already made a payment?/Is it possible to use my forgotten voucher on subsequent purchases?/Where can I find the terms for using the voucher I missed?
