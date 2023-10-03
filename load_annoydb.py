@@ -17,11 +17,11 @@ loader = TextLoader('db_text/product_menu_clean.txt')
 
 documents = loader.load()
 
-#product_menu_clean: chunk size 1800, overlap 0
-#outlet_details_clean: chunk size 1000, overlap 0
-# combined_loyalty_benefit_birthday_voucher: chunk size 1800, overlap 0
+# product_menu_clean: chunk size 1000, overlap 0
+# outlet chunk size = 500
+# loyalty/birthday chunk size = 1600
 
-text_splitter = CharacterTextSplitter(chunk_size=1800, chunk_overlap=0)
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 
 docs = text_splitter.split_documents(documents)
 vectordb = Annoy.from_documents(
