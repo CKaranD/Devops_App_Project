@@ -12,7 +12,7 @@ def mlp_classifier(customer_input):
     emb_test_data = [get_embedding(customer_input, engine=embedding_model)]
 
     # load model
-    model_name = "gen3_model_06.pickle"
+    model_name = "gen3_model_07.pickle"
     model = pickle.load(open(model_name, "rb"))
     preds = model.predict(emb_test_data)
 
@@ -22,7 +22,10 @@ def mlp_classifier(customer_input):
     # Get the corresponding class labels
     # labels = model.classes_
     confidence = max(probas[0])
-    if preds[0] == "neg1" or preds[0] == "neg2" or preds[0] == "neg3" or preds[0] == "neg4" or preds[0] == "neg5":
+
+    # define all sub-groups of negative intent
+    negative_intents = {"neg1", "neg2", "neg3", "neg4", "neg5", "neg6"}
+    if preds[0] in negative_intents:
         intent = "negative intent"
     else:
         intent = preds[0]

@@ -9,12 +9,12 @@ RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 COPY lambda_classifier.py ${LAMBDA_TASK_ROOT}
 COPY detect_language.py ${LAMBDA_TASK_ROOT}
 COPY mlp_classifier.py ${LAMBDA_TASK_ROOT}
-COPY pre_negative_intent_classifier.py ${LAMBDA_TASK_ROOT}
+# COPY pre_negative_intent_classifier.py ${LAMBDA_TASK_ROOT}
 COPY translation.py ${LAMBDA_TASK_ROOT}
 COPY get_openai_key.py ${LAMBDA_TASK_ROOT}
 
 # MLP model file
-COPY gen3_model_06.pickle ${LAMBDA_TASK_ROOT}
+COPY gen3_model_07.pickle ${LAMBDA_TASK_ROOT}
 
 # Copy API keys from folders
 COPY OPENAI_API_KEY/OPENAI_API_KEY_MINDHIVE.txt ${LAMBDA_TASK_ROOT}
