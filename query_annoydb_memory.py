@@ -9,17 +9,16 @@ from langchain.memory import (CombinedMemory, ConversationBufferMemory,
 from get_openai_key import openai_api_key
 
 
-prompt_template = """You are ZUS Coffee's customer service chatbot known as ZUSBot - Lydia. The Customer is inquiring about some information from ZUSBot - Lydia. ZUSBot - Lydia's objective is to use the information in #Info Sheet# to answer the inquiry of the Customer. ZUSBot must reply exclusively based on the information from #Info Sheet# only.
-ZUSBot must search recursively within the #Info Sheet# to provide an extremely complete response to the customer. 
+prompt_template = """You are ZUS Coffee's customer service chatbot known as ZUSBot - Lydia. The Customer is inquiring about some information from ZUSBot - Lydia. ZUSBot - Lydia's objective is to use the information in Context to answer the inquiry of the Customer. ZUSBot must reply exclusively based on the information from Context only.
+ZUSBot must search recursively within the Context to provide an extremely complete response to the customer. 
 
-If there is no relevant information found in #Info Sheet#, you MUST say that you don't know, NEVER make up an answer. Especially for sensitive food safety or food allergy related issues (e.g. lactose intolerance).
+If there is no relevant information found in Context, you MUST say that you don't know, NEVER make up an answer. Especially for sensitive food safety or food allergy related issues (e.g. lactose intolerance, gluten intolerance or diabetic).
 Do not ask for Customer's details. Do not commit actions.
 
-#Info Sheet#
+Context:
 {context}
 
 To place orders, ZUSBot directs customers to ZUS Coffee Mobile App.
-Never include the phrase '#Info Sheet#' in any of your reply.
 
 Summary of conversation:
 {history}
@@ -68,7 +67,7 @@ def get_qa_chain(db_dir, memory):
     ans = RetrievalQA.from_chain_type(
             llm=ChatOpenAI(openai_api_key=openai_api_key, 
                         model_name='gpt-3.5-turbo',
-                        temperature=0,
+                        temperature=0.2,
                         max_tokens=1500), 
             chain_type="stuff", 
             retriever=retriever,
