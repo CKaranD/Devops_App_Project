@@ -21,6 +21,7 @@ def lambda_system_msg(pickled_memory_file, user_input, sys_msg):
 
 # debug lines
 # pickled_memory_file = "my_local_test.pickle"
-# sys_msg = "Please enter your order number of the transaction in the correct format. (eg: AB1122334455)"
-# summary_value = lambda_chat_memory_manager(pickled_memory_file, sys_msg)
+# sys_msg = "Upon checking, your order has been refunded."
+# user_input = "AS1122334455"
+# summary_value = lambda_system_msg(pickled_memory_file, user_input, sys_msg)
 # print(summary_value)
