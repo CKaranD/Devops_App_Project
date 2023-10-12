@@ -18,12 +18,18 @@ loader = TextLoader('db_text/outlet_details_clean.txt')
 documents = loader.load()
 
 # product_menu_clean: chunk size 1650, overlap 0
-# outlet chunk size = 1800
+# outlet chunk size = 1650
 # loyalty/birthday chunk size = 1600
 
 text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=0, separator="\n\n")
 
 docs = text_splitter.split_documents(documents)
+
+for i in docs:
+    page_con = i.page_content
+    print(len(page_con))
+    print(page_con)
+
 vectordb = Annoy.from_documents(
     documents=docs, 
     embedding=OpenAIEmbeddings(openai_api_key=openai_api_key))
