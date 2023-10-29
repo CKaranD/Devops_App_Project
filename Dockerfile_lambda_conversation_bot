@@ -17,6 +17,8 @@ COPY template_sub_oos.py ${LAMBDA_TASK_ROOT}
 COPY template_sub_delivery_info_status.py ${LAMBDA_TASK_ROOT}
 COPY template_sub_career.py ${LAMBDA_TASK_ROOT}
 COPY template_sub_pickup_info_status.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_zus_halal.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_zus_name.py ${LAMBDA_TASK_ROOT}
 
 # Copy API keys from folders
 COPY AWS_S3_KEY/AWS_S3_KEY.txt ${LAMBDA_TASK_ROOT}
