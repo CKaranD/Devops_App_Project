@@ -75,7 +75,7 @@ while True: # the following lines are all in the while loop
                 output, chat_summary, mem_flag, vecdb_flag, eot_flag, query_mem_flag = lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, query_mem_flag, query_memory_file, user_input, intent)        
                 print(output)
 
-        elif intent == "zus career":
+        elif intent == "zus career" or intent == "Zus name" or intent == "zus halal":
             output, chat_summary, mem_flag = lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, status=0)
             print(output)
             eot_flag = 0
