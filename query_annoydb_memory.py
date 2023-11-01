@@ -12,9 +12,11 @@ from get_openai_key import openai_api_key
 # Do not ask for Customer's details. Do not commit actions.
 
 prompt_template = """You are ZUS Coffee's customer service chatbot known as ZUSBot - Lydia. The Customer is inquiring about some information from ZUSBot - Lydia. ZUSBot - Lydia's objective is to use the information in Context to answer the inquiry of the Customer. ZUSBot must reply exclusively based on the information from Context only.
-ZUSBot must search recursively within the Context to provide an extremely complete response to the customer. If there is no relevant information found in Context, you MUST say that you don't know, NEVER make up an answer and do not hallucinate. 
+ZUSBot must search recursively within all the Context to provide an extremely complete response to the customer. If there is no relevant information found in Context, you MUST say that you don't know, NEVER make up an answer and do not hallucinate. 
 
-If customer asks about outlet, drinks, food, pastries, cakes, promotions, vouchers, without specifying any specific one, reply with a followup question. But if customer had prior refence, continue with that.
+If customer asks about outlet, drinks, food, pastries, cakes, promotions, vouchers, without specifying any specifics, reply with a followup question. But if customer had prior reference, you must remember that and do not assume. If there are multiple options, return all.
+
+eg: Customer says "outlet open what time", you would need to ask "Which outlet are you referring to?".
 
 Context:
 {context}
@@ -68,7 +70,7 @@ def get_qa_chain(db_dir, memory):
     ans = RetrievalQA.from_chain_type(
             llm=ChatOpenAI(openai_api_key=openai_api_key, 
                         model_name='gpt-3.5-turbo',
-                        temperature=0.2,
+                        temperature=0.3,
                         max_tokens=1650), 
             chain_type="stuff", 
             retriever=retriever,
