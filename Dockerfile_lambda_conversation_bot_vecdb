@@ -38,6 +38,9 @@ COPY get_openai_key.py ${LAMBDA_TASK_ROOT}
 COPY query_annoydb_memory.py ${LAMBDA_TASK_ROOT}
 COPY zus_write_load_mem.py ${LAMBDA_TASK_ROOT}
 COPY template_main_v4.py ${LAMBDA_TASK_ROOT}
+COPY template_vecdb_outlets.py ${LAMBDA_TASK_ROOT}
+COPY template_vecdb_birthday_vouchers.py ${LAMBDA_TASK_ROOT}
+COPY template_vecdb_product_menu.py ${LAMBDA_TASK_ROOT}
 
 # Copy DB
 COPY db "${LAMBDA_TASK_ROOT}/db"

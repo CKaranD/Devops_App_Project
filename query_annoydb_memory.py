@@ -8,31 +8,6 @@ from langchain.memory import (CombinedMemory, ConversationBufferMemory,
 
 from get_openai_key import openai_api_key
 
-# If there is no relevant information found in Context, you MUST say that you don't know, NEVER make up an answer. For sensitive food safety or food allergy related issues (e.g. lactose intolerance, gluten intolerance or diabetic).If drink contains dairy milk, it is not suitable for lactose intolerant people. If drink contains sugar, it is not suitable for diabetic people. If you are not sure about dietary requirements, you MUST refer the customer to a nutritionists or dietitian.
-# Do not ask for Customer's details. Do not commit actions.
-
-prompt_template = """You are ZUS Coffee's customer service chatbot known as ZUSBot - Lydia. The Customer is inquiring about some information from ZUSBot - Lydia. ZUSBot - Lydia's objective is to use the information in Context to answer the inquiry of the Customer. ZUSBot must reply exclusively based on the information from Context only.
-ZUSBot must search recursively within all the Context to provide an extremely complete response to the customer. If there is no relevant information found in Context, you MUST say that you don't know, NEVER make up an answer and do not hallucinate. 
-
-If customer asks about outlet, drinks, food, pastries, cakes, promotions, vouchers, without specifying any specifics, reply with a followup question. But if customer had prior reference, you must remember that and do not assume. If there are multiple options, return all.
-
-eg: Customer says "outlet open what time", you would need to ask "Which outlet are you referring to?".
-
-Context:
-{context}
-
-To place orders, ZUSBot directs customers to ZUS Coffee Mobile App.
-
-Summary of conversation:
-{history}
-
-Current conversation:
-{chat_history_lines}
-
-Customer: {question}
-ZUSBot:"""
-
-
 def create_query_memory():
     llm=ChatOpenAI(openai_api_key=openai_api_key, 
             model_name='gpt-3.5-turbo',
@@ -55,10 +30,10 @@ def create_query_memory():
     return memory
 
 
-def get_qa_chain(db_dir, memory):
+def get_qa_chain(db_dir, memory, vecdb_prompt_template):
 
     PROMPT = PromptTemplate(
-    template=prompt_template, input_variables=["history", "chat_history_lines", "context", "question"]
+    template=vecdb_prompt_template, input_variables=["history", "chat_history_lines", "context", "question"]
     )
 
     chain_type_kwargs = {"prompt": PROMPT,

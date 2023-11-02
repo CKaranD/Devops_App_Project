@@ -46,15 +46,23 @@ def lambda_conversation_bot_vecdb(event, context):
     # DB retrieval directories
     if intent == "loyalty benefits":
         db_path = 'db/loyalty_benefits'
+        from template_vecdb_birthday_vouchers import (ZUS_VECDB_PROMPT)
+        VECDB_ZUS_TEMPLATE = ZUS_VECDB_PROMPT
     
     elif intent == "product / menu details":
         db_path = 'db/products_menu'
+        from template_vecdb_product_menu import (ZUS_VECDB_PROMPT)
+        VECDB_ZUS_TEMPLATE = ZUS_VECDB_PROMPT
 
     elif intent == "birthday / vouchers":
         db_path = 'db/birthday_vouchers'
+        from template_vecdb_birthday_vouchers import (ZUS_VECDB_PROMPT)
+        VECDB_ZUS_TEMPLATE = ZUS_VECDB_PROMPT
 
     elif intent == "outlet details":
         db_path = 'db/outlet_details'
+        from template_vecdb_outlets import (ZUS_VECDB_PROMPT)
+        VECDB_ZUS_TEMPLATE = ZUS_VECDB_PROMPT
     
     # handling of query memory
     if query_mem_flag == 0:
@@ -63,7 +71,7 @@ def lambda_conversation_bot_vecdb(event, context):
     else:
         query_memory = load_memory(query_memory_file)          
     
-    qa_chain, query_memory_out = get_qa_chain(db_path, query_memory)    
+    qa_chain, query_memory_out = get_qa_chain(db_path, query_memory, VECDB_ZUS_TEMPLATE)    
     output = qa_chain.run(user_input)    
     write_memory(query_memory_out, query_memory_file)
 
