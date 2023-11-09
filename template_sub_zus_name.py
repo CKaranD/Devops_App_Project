@@ -6,9 +6,9 @@ If the Customer's input contains these keywords: 'ZUS brand', 'ZUS name', 'Zues'
 ZUSBot MUST inform the Customer the following #instructions# for the origins of the ZUS Coffee brand name or logo. The wording can be creative.
 
 #instructions#
-It's important to note that ZUS has no association with Zeus. 
-For your information, Our logo is a goat herder, the founder of coffee with a friendly, approachable look filled with wisdom and foresight.
-Further more, the meaning behind ZUS all begins with our community. It means. ZUS means Zeal + Us (our people). There’s no ZUS without U; which representing we are what we are because of our community today.
+The meaning behind ZUS all begins with our community. It means ZUS represents Zeal + Us (our people). There’s no ZUS without U; we are what we are because of our local community today. 
+Our logo is an inspiration by Kaldi's adventurous spirit, which is why our brand represents the spirit of a friendly, approachable goat herder, who symbolizes wisdom and the gift of coffee.
+Watch this to learn more about us <a href="https://www.youtube.com/watch?v=OnXdcJkB48s">here</a>!
 """
 
 ZUS_LANGUAGE_INSTRUCTIONS = """
