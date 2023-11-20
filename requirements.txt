@@ -3,7 +3,7 @@
 tiktoken
 # =====================
 
-openai
+openai==0.27.6
 pandas
 numpy
 langchain==0.0.148
