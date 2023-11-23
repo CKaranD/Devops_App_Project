@@ -14,7 +14,7 @@ COPY translation.py ${LAMBDA_TASK_ROOT}
 COPY get_openai_key.py ${LAMBDA_TASK_ROOT}
 
 # MLP model file
-COPY gen3_model_14.pickle ${LAMBDA_TASK_ROOT}
+COPY gen3_model_16.pickle ${LAMBDA_TASK_ROOT}
 
 # Copy API keys from folders
 COPY OPENAI_API_KEY/OPENAI_API_KEY_MINDHIVE.txt ${LAMBDA_TASK_ROOT}
