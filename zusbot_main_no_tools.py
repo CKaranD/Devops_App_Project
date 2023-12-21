@@ -6,7 +6,7 @@ from langchain import LLMChain
 from langchain.chains import (ConversationChain, ConversationalRetrievalChain)
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import (CombinedMemory, ConversationBufferMemory,
-                            ConversationSummaryMemory)    
+                            ConversationSummaryMemory, ConversationBufferWindowMemory)    
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 
@@ -41,7 +41,9 @@ def create_memory(llm):
         input_key="input", 
         return_messages=True,
         human_prefix="Customer",
-        ai_prefix="ZUSBot")
+        ai_prefix="ZUSBot",
+        num_past_utterances=3
+    )
 
     summary_memory = ConversationSummaryMemory(llm=llm, input_key="input", 
                                                memory_key="history",
@@ -92,7 +94,8 @@ def extract_response(text):
 
 def zusbot(ZUS_TEMPLATE, llm, user_input, memory, pickled_memory_file):
     PROMPT = PromptTemplate(
-    input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE)
+        input_variables=["history", "input", "chat_history_lines"], template=ZUS_TEMPLATE
+    )
 
     # LLM chain consisting of the LLM and a prompt
     llm_chain = ConversationChain(
