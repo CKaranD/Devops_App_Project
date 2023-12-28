@@ -41,8 +41,7 @@ def create_memory(llm):
         input_key="input", 
         return_messages=True,
         human_prefix="Customer",
-        ai_prefix="ZUSBot",
-        num_past_utterances=3
+        ai_prefix="ZUSBot"
     )
 
     summary_memory = ConversationSummaryMemory(llm=llm, input_key="input", 
