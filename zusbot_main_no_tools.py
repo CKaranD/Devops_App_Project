@@ -28,18 +28,19 @@ from zus_write_load_mem import write_memory, load_memory
 
 def create_llm(openai_api_key):
     llm=ChatOpenAI(openai_api_key=openai_api_key, 
-            model_name='gpt-3.5-turbo',
+            model_name='gpt-3.5-turbo-1106',
             temperature=0.6,
-            max_tokens = 2048)
+            max_tokens = 3072)
     return llm
 
 
 def create_memory(llm):
     # define the memory sets
-    conv_memory = ConversationBufferMemory(
+    conv_memory = ConversationBufferWindowMemory(
+        k=5,
         memory_key="chat_history_lines",
         input_key="input", 
-        return_messages=True,
+        return_messages=False,
         human_prefix="Customer",
         ai_prefix="ZUSBot"
     )
