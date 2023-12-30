@@ -7,7 +7,9 @@
 
 sudo docker build -t lambda_conversation_bot_vecdb .
 
-sudo docker login -u AWS -p $(/usr/local/bin/aws ecr get-login-password --region ap-southeast-1) 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com
+# sudo docker login -u AWS -p $(/usr/local/bin/aws ecr get-login-password --region ap-southeast-1) 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com
+
+aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com
 
 #production
 sudo docker tag lambda_conversation_bot_vecdb:latest 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/zus-phase2-lambda-conversation-bot-vecdb:latest

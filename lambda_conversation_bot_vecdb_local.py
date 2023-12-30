@@ -30,7 +30,7 @@ def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, query_mem_flag,
     
     elif intent == "product / menu details":
         db_path = 'db/products_menu'
-        from template_vecdb_outlets import (ZUS_VECDB_PROMPT)
+        from template_vecdb_product_menu import (ZUS_VECDB_PROMPT)
         VECDB_ZUS_TEMPLATE = ZUS_VECDB_PROMPT
 
     elif intent == "birthday / vouchers":
@@ -40,7 +40,7 @@ def lambda_conversation_bot_vecdb(mem_flag, pickled_memory_file, query_mem_flag,
 
     elif intent == "outlet details":
         db_path = 'db/outlet_details'
-        from template_vecdb_product_menu import (ZUS_VECDB_PROMPT)
+        from template_vecdb_outlets import (ZUS_VECDB_PROMPT)
         VECDB_ZUS_TEMPLATE = ZUS_VECDB_PROMPT
 
     # handling of query memory
