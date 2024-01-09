@@ -77,6 +77,10 @@ def lambda_conversation_bot(mem_flag, pickled_memory_file, user_input, intent, s
     elif intent == "item availability":
         from template_sub_item_availability import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
         ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
+
+    elif intent == "delivery range":
+        from template_sub_delivery_range import (ZUS_LANGUAGE_INSTRUCTIONS, ZUS_PREFIX, ZUS_SUFFIX)
+        ZUS_TEMPLATE = ZUS_PREFIX + ZUS_LANGUAGE_INSTRUCTIONS + language + ZUS_SUFFIX
     
     # add more of such rule here for other intents
     

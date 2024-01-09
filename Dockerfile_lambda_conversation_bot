@@ -23,6 +23,7 @@ COPY template_sub_how_to_order.py ${LAMBDA_TASK_ROOT}
 COPY template_sub_66promo.py ${LAMBDA_TASK_ROOT}
 COPY template_sub_cup_count.py ${LAMBDA_TASK_ROOT}
 COPY template_sub_item_availability.py ${LAMBDA_TASK_ROOT}
+COPY template_sub_delivery_range.py ${LAMBDA_TASK_ROOT}
 
 # Copy API keys from folders
 COPY AWS_S3_KEY/AWS_S3_KEY.txt ${LAMBDA_TASK_ROOT}
