@@ -7,14 +7,13 @@ def translator(user_input):
     translate = "Translate the following text to English: "
     all_prompt = translate + user_input
 
-    response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt = all_prompt,    
-    temperature=0,
-    max_tokens=1024,
-    top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0
+    # Using gpt-3.5-turbo model
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a translator."},
+            {"role": "user", "content": all_prompt}
+        ]
     )
 
-    return response.choices[0].text
+    return response['choices'][0]['message']['content']

@@ -8,18 +8,16 @@ openai.api_key = openai_api_key
 def translator(sys_msg, language):
     translate = "Translate the following text to " + language + ": "
     all_prompt = translate + sys_msg
-    
-    response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt = all_prompt,    
-    temperature=0,
-    max_tokens=1024,
-    top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a translator."},
+            {"role": "user", "content": all_prompt}
+        ]
     )
 
-    return response.choices[0].text
+    return response['choices'][0]['message']['content']
 
 
 def response_system_msg(user_input, sys_msg):
