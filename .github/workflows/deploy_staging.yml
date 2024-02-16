@@ -3,8 +3,10 @@ name: Deploy to Staging ECR
 on:
   push:
     branches:
-      - staging  # or any branch you use for staging development
-
+      - staging  # Keeps existing trigger on push to staging branch
+  repository_dispatch:
+    types: [deploy-staging]  # Define a custom event type for dispatch
+    
 env:
   AWS_REGION: ap-southeast-1
   ECR_REPOSITORY: staging-zus-phase2-lambda-classifier
@@ -25,7 +27,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
