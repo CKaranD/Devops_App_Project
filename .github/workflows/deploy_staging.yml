@@ -3,7 +3,7 @@ name: Deploy to Staging ECR
 on:
   push:
     branches:
-      - staging  # Keeps existing trigger on push to staging branch
+      - staging-classifier branch # Keeps existing trigger on push to staging branch
   repository_dispatch:
     types: [deploy-staging]  # Define a custom event type for dispatch
     
