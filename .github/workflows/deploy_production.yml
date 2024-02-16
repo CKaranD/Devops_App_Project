@@ -1,0 +1,33 @@
+name: Deploy to Production ECR
+
+on:
+  push:
+    branches:
+      - production  # or any branch you use for production releases
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+      with:
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+        REGION: ap-southeast-1
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: zus-phase2-lambda-classifier
+        IMAGE_TAG: latest
+      run: |
+        docker build -t lambda_classifier .
+        docker tag lambda_classifier:latest 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/zus-phase2-lambda-classifier:latest
+        docker push 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/zus-phase2-lambda-classifier:latest
+ 

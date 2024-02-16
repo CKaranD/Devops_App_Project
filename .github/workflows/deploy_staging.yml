@@ -1,0 +1,57 @@
+name: Deploy to Staging ECR
+
+on:
+  push:
+    branches:
+      - staging  # or any branch you use for staging development
+
+env:
+  AWS_REGION: ap-southeast-1
+  ECR_REPOSITORY: staging-zus-phase2-lambda-classifier
+# permissions:   # Here you add the permissions block
+#   id-token: write
+#   contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
+
+
+    # steps:
+    # - name: Checkout repo
+    #   uses: actions/checkout@v3
+  
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v4
+    #   with:
+    #     role-to-assume: arn:aws:iam::180844954664:role/my-github-actions-role
+    #     aws-region: ap-southeast-1 # Replace with your actual AWS region
+
+    # - name: Login to Amazon ECR
+    #   id: login-ecr
+    #   uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: staging-zus-phase2-lambda-classifier
+          IMAGE_TAG: latest
+        run: |
+          docker build -t lambda_classifier .
+          docker tag lambda_classifier:latest 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
+          docker push 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
