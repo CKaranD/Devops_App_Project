@@ -27,7 +27,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -55,5 +55,8 @@ jobs:
           IMAGE_TAG: latest
         run: |
           docker build -t lambda_classifier .
-          docker tag lambda_classifier:latest 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
-          docker push 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
+          docker tag lambda_classifier:latest 339713113095.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
+          docker push 339713113095.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
+
+        # docker tag lambda_classifier:latest 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
+        # docker push 180844954664.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
