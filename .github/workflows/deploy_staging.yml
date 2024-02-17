@@ -54,7 +54,8 @@ jobs:
           ECR_REPOSITORY: staging-zus-phase2-lambda-classifier
           IMAGE_TAG: latest
         run: |
-          docker build -t lambda_classifier .
+          docker build --build-arg OPENAI_API_KEY=$(cat OPENAI_API_KEY/OPENAI_API_KEY_MINDHIVE.txt) -t lambda_classifier .
+        # docker build -t lambda_classifier .
           docker tag lambda_classifier:latest 339713113095.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
           docker push 339713113095.dkr.ecr.ap-southeast-1.amazonaws.com/staging-zus-phase2-lambda-classifier:latest
 

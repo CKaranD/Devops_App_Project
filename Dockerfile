@@ -1,5 +1,8 @@
 FROM public.ecr.aws/lambda/python:3.8
 
+ARG OPENAI_API_KEY
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+
 # lambda_classifier.py
 
 COPY requirements.txt  .
