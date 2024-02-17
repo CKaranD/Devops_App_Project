@@ -20,7 +20,7 @@ COPY get_openai_key.py ${LAMBDA_TASK_ROOT}
 COPY gen3_model_31.pickle ${LAMBDA_TASK_ROOT}
 
 # Copy API keys from folders
-COPY OPENAI_API_KEY/OPENAI_API_KEY_MINDHIVE.txt ${LAMBDA_TASK_ROOT}
+# COPY OPENAI_API_KEY/OPENAI_API_KEY_MINDHIVE.txt ${LAMBDA_TASK_ROOT}
 
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
 CMD [ "lambda_classifier.lambda_classifier" ]
